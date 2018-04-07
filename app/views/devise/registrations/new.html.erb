@@ -1,0 +1,52 @@
+<div class="contents row">
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+
+  <div class="row">
+    <div class="input-field col s8">
+<!--       <input id="email" type="email" class="validate">
+      <label for="email">Email</label> -->
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s8">
+<!--       <input id="password" type="password" class="validate">
+      <label for="password">Password</label> -->
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s8">
+<!--       <input id="password" type="password" class="validate">
+      <label for="password">Password</label> -->
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+  </div>
+
+  <div class="waves-effect waves-light btn-large">
+    <%= f.submit "Sign up" %>
+  </div>
+
+  <div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+    </select>
+    <label>Materialize Select</label>
+  </div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>

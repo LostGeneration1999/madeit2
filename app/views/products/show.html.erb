@@ -1,0 +1,18 @@
+<div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%= @product.image %>">
+            </div>
+            <div class="card-content">
+              <%= @product.description %>
+            </div>
+            <div class="card-action">
+              <a href="<%= @product.url1 %>">Link1</a>
+              <a href="<%= @product.url2 %>">Link2</a>
+            </div>
+            <%= link_to 'Edit', edit_product_path(@product) %>
+            <%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+</div>
