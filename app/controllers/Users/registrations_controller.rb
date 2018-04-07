@@ -29,7 +29,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  def edits
+  def edit
+
   end
 
   # GET /resource/cancel
@@ -54,13 +55,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   'users#edit'
-  # end
+  def after_sign_up_path_for(resource)
+     binding.pry
+     users_edit_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
-  #     edit_user_registration_path(resource)
+  #   users_edit_path
   # end
 
 end

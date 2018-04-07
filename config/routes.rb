@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  # devise_scope :user do
-  #   get 'users/:id/edit' => 'users/registrations#edit'
-  # end
+  devise_scope :user do
+    get 'users/edit' => 'users/registrations#edit'
+  end
 
   resources :users, only: [:edit, :show]
   resources :products do
