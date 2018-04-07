@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20180407064912) do
 
-  create_table "items", force: :cascade do |t|
-    t.text     "description", limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "content",     limit: 65535
