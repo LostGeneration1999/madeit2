@@ -1,1 +1,16 @@
 <h1>page</h1>
+<!-- app/views/users/_form.html.erb -->
+<%= form_for(@user) do |f| %>
+  ...
+  <div class="field">
+    <%= f.label :name, "名前" %><br>
+
+  </div>
+  <div class="field">
+    <%= f.label :skill_list, "スキル・特技（カンマ区切り）" %><br>
+    <%= text_field_tag 'user[skill_list]', @user.skill_list.join(',') %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

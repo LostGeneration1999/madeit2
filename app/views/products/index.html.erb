@@ -6,7 +6,7 @@
 <div class="col s12 m8 l9">
       <h5 class="center-align">
         <% @products.each do |product| %>
-<div class="row">
+      <div class="row">
         <div class="col s12 m7">
           <div class="card">
             <div class="card-image">
@@ -23,14 +23,20 @@
               <a href="<%= product.url1 %>">Link1</a>
               <a href="<%= product.url2 %>">Link2</a>
             </div>
+            <div>
+            <% product.skill_list.each do |tag| %>
+            <span class="label label-primary"><%= tag %></span>
+            <% end %>
+            </div>
             <%= link_to 'Show', product %>
             <%= link_to 'Edit', edit_product_path(product) %>
             <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+
           </div>
         </div>
       </div>
         <% end %>
-  </h5>
+      </h5>
   <div class="col s12 m9">
     <%= paginate(@products) %>
   </div>
@@ -46,5 +52,5 @@
           <p>kakak</p>
 
  </div>
-
   </div>
+

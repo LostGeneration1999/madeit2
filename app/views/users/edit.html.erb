@@ -2,7 +2,25 @@
   <div class="col-lg-12">
     <%= form_for current_user do |f| %>
       <h2>登録情報</h2>
-
+      <!-- app/views/users/_form.html.erb -->
+<%= form_for(@user) do |f| %>
+  ...
+  <div class="field">
+    <%= f.label :name, "名前" %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :skill_list, "スキル・特技（カンマ区切り）" %><br>
+    <%= text_field_tag 'user[skill_list]', @user.skill_list.join(',') %>
+  </div>
+  <div class="field">
+    <%= f.label :interest_list, "興味・関心（カンマ区切り）" %><br>
+    <%= text_field_tag 'user[interest_list]', @user.interest_list.join(',') %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
     <% end %>
   </div>
 </div>

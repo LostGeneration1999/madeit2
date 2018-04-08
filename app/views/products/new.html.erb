@@ -26,6 +26,12 @@
     <%= f.file_field :image %>
   </div>
 
+  <div class="field">
+    <%= f.label :skill_list, "分野" %><br>
+    <%= text_field_tag 'product[skill_list]', @product.skill_list.join(',') %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
