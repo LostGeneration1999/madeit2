@@ -45,7 +45,7 @@ m
       <%= link_to 'サインアウト', destroy_user_session_path, method: :delete %>
       </li>
        <li class="input_button" style="float: right">
-         <%= link_to 'マイページ', "/users/#{current_user.id}/edit" %>
+         <%= link_to 'マイページ', "/users/#{current_user.id}" %>
        </li>
 
     <% else %>
