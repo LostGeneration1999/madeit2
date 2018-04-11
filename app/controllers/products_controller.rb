@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.order("created_at DESC").page(params[:page]).per(3)
+    @products = Product.order("created_at DESC").page(params[:page]).per(20)
   end
 
   def new
@@ -21,6 +21,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy if product.user_id ==  current_user.id
+  end
 
  private
 
@@ -30,7 +34,7 @@ class ProductsController < ApplicationController
   # end
    # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:name,:content, :url1, :url2,:description, :image, :skill_list)
+    params.require(:product).permit(:name,:content, :url1, :url2,:description, :image, :tags_list)
   end
 
   def move_to_index

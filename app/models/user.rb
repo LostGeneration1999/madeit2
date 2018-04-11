@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :products
 
-
+  validates :email, presence: true
+  validates :nickname, presence: true
   has_attached_file :avatar,
                       styles:  { medium: "300x300#", thumb: "100x100#" }
   validates_attachment_content_type :avatar,

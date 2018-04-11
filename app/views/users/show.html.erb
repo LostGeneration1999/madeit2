@@ -1,16 +1,72 @@
-<h1>page</h1>
+<h1>マイページ</h1>
 <!-- app/views/users/_form.html.erb -->
-<%= form_for(@user) do |f| %>
-  ...
-  <div class="field">
-    <%= f.label :name, "名前" %><br>
+<div class="row form user_profile">
+  <div class="col-lg-12">
+    <img src="<%= @user.avatar %>" alt="" class="circle responsive-img">
+    <h2><%= "#{@user.nickname}" %></h2>
+  </div>
 
+  <div class="col-lg-12">
+    <h2><%= "#{@user.birth}" %></h2>
   </div>
-  <div class="field">
-    <%= f.label :skill_list, "スキル・特技（カンマ区切り）" %><br>
-    <%= text_field_tag 'user[skill_list]', @user.skill_list.join(',') %>
+  <div class="col-lg-12">
+    <h2><%= "#{@user.field}" %></h2>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="col-lg-12">
+    <h2><%= "#{@user.facebook_id}" %></h2>
   </div>
+  <div class="col-lg-12">
+    <h2><%= "#{@user.twitter_id}" %></h2>
+  </div>
+  <div class="col-lg-12">
+    <h2><%= "#{@user.github_id}" %></h2>
+  </div>
+
+  <div class="col-lg-12">
+  <%= link_to '編集する' ,edit_user_path %>
+  </div>
+
+<div class="col-lg-12">
+<% @products.each do |product| %>
+     <div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%= product.image.url %>">
+              <span class="card-title">
+                <%= product.name %>
+              </span>
+            </div>
+            <div class="col s4">
+              <img src="<%= product.user.avatar %>" alt="" class="circle responsive-img">
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+                <%= link_to "#{@user.nickname}",  user_path(@user.id) %>
+              </span>
+            </div>
+            <div class="card-content">
+              <%= product.description %>
+            </div>
+            <div class="card-content">
+              <%= product.description %>
+            </div>
+            <div class="card-action">
+              <a href="<%= product.url1 %>">Link1</a>
+              <a href="<%= product.url2 %>">Link2</a>
+            </div>
+            <div>
+            <% product.tag_list.each do |tag| %>
+            <span class="label label-primary"><%= tag %></span>
+            <% end %>
+            </div>
+            <%= link_to 'Show', product %>
+            <%= link_to 'Edit', edit_product_path(product) %>
+            <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+          </div>
+        </div>
+      </div>
 <% end %>
+</div>
+</div>
