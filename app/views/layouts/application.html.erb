@@ -31,14 +31,16 @@ m
 
 <nav>
   <div class="nav-wrapper">
-    <div href="#" class="brand-logo input_button">
+    <div href="#" class="brand-logo input_button center">
     <%= link_to 'Made IT!', "/products" %>
     </div>
 
 <!--     <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
    <ul class="gmenu">
-    <li class="input_button" style="float: right">
-      <%= link_to '投稿', "/products/new" %>
+      <li  class="input_button" style="float: right">
+        <i class="material-icons">
+          <%= link_to 'edit', "/products/new" %>
+        </i>
       </li>
     <% if user_signed_in? %>
       <li class="input_button" style="float: right">
@@ -57,6 +59,7 @@ m
       </li>
     <% end %>
     </ul>
+    <a class="btn-floating pulse"><i class="material-icons">menu</i></a>
   </div>
 </nav>
 

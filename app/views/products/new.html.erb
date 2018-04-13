@@ -27,13 +27,16 @@
   </div>
 
   <div class="field">
-    <%= f.label :tags_list, "分野" %><br>
-    <%= text_field_tag 'product[tags_list]', @product.tag_list.join(',') %>
+    <%= f.label :field_list, "分野" %><br>
+    <%= text_field_tag 'product[field_list]', @product.field_list.join(',') %>
   </div>
-
 
   <div class="actions">
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
     <%= f.submit %>
+  </button>
   </div>
+
 <% end %>
 </div>

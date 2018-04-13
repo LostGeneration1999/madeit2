@@ -21,13 +21,23 @@
               <a href="<%= @product.url1 %>">Link1</a>
               <a href="<%= @product.url2 %>">Link2</a>
             </div>
+
+            <%= link_to @product, class: "waves-effect waves-light btn" do %>
+              <i class="fa fa-arrow-left"></i>
+             <span>SHOW</span>
+             <% end %>
+
+            <% if user_signed_in? && current_user. id == @product.user_id %>
             <%= link_to edit_product_path(@product), class: "waves-effect waves-light btn" do %>
+              <i class="fa fa-arrow-left"></i>
              <span>編集</span>
              <% end %>
+
              <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-right"></i>
+              <i class="fa fa-arrow-left"></i>
              <span>削除</span>
              <% end %>
+            <% end %>
           </div>
           <%= link_to products_path , class: "waves-effect waves-light btn" do %>
               <i class="fa fa-arrow-right"></i>

@@ -1,52 +1,119 @@
-<div class="contents row">
-<h2>Sign up</h2>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+     <%= devise_error_messages! %>
+      <div class="container">
+        <h1 class="header center teal-text text-lighten-2">Email Registration</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+        <!--       <input id="email" type="email" class="validate">
+              <label for="email">Email</label> -->
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </h5>
+          </div>
+        </div>
+        <br><br>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+      </div>
+    </div>
 
-
-  <div class="row">
-    <div class="input-field col s8">
-<!--       <input id="email" type="email" class="validate">
-      <label for="email">Email</label> -->
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <h1 class="header center teal-text text-lighten-2">Password Registration</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+        <!--       <input id="password" type="password" class="validate">
+              <label for="password">Password</label> -->
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "off" %>
+            </h5>
+          <h5 class="input-field col s12">
+        <!--       <input id="password" type="password" class="validate">
+              <label for="password">Password</label> -->
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            </h5>
+        </div>
+      </div>
     </div>
   </div>
+        <br><br>
 
-  <div class="row">
-    <div class="input-field col s8">
-<!--       <input id="password" type="password" class="validate">
-      <label for="password">Password</label> -->
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+     <div class="container">
+        <h1 class="header center teal-text text-lighten-2">Nickname Registration</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+        <!--       <input id="email" type="email" class="validate">
+              <label for="email">Email</label> -->
+              <%= f.label :nickname %><br />
+              <%= f.email_field :nickname %>
+            </h5>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="input-field col s8">
-<!--       <input id="password" type="password" class="validate">
-      <label for="password">Password</label> -->
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+    <div class="container">
+        <h1 class="header center teal-text text-lighten-2">Image Registration</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+        <!--       <input id="email" type="email" class="validate">
+              <label for="email">Email</label> -->
+                <%= f.file_field :avatar %>
+            </h5>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="waves-effect waves-light btn-large">
-    <%= f.submit "Sign up" %>
-  </div>
+<!--   <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot"> -->
+    <div class="container">
+        <h1 class="header center teal-text text-lighten-2">Field Registration</h1>
+        <div class="row center">
+          <h5 class="input-field col s12">
+        <!--       <input id="email" type="email" class="validate">
+              <label for="email">Email</label> -->
+              <select>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">電子工作</option>
+                <option value="2">自作PC</option>
+                <option value="3">ロボット</option>
+                <option value="4">サーバー</option>
+                <option value="5">IoT</option>
+              </select>
+              <label>Your Favorite Field</label>
+            </h5>
+          </div>
+        </div>
 
-  <div class="input-field col s12">
-    <select>
-      <option value="" disabled selected>Choose your option</option>
-    </select>
-    <label>Materialize Select</label>
-  </div>
+          <div class="actions">
+            <%= f.submit "Sign up" %>
+          </div>
+
 
 <% end %>
 
-<%= render "devise/shared/links" %>
-</div>
+    <div class="container">
+          <div class="waves-effect waves-light btn-large">
+           <%= render "devise/shared/links" %>
+          </div>
+
+          <div class="input-field col s12">
+            <select>
+              <option value="" disabled selected>Choose your option</option>
+            </select>
+            <label>Materialize Select</label>
+          </div>
+        </div>
+      </div>
+
