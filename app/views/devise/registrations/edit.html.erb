@@ -1,58 +1,100 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class = "row">
+  <div class = "container">
+    <div class = "col s2">
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class = "col s8">
+      <h2>Edit <%= resource_name.to_s.humanize %> Page</h2>
+       <br>
+       <h6>このページを編集する際、現在使用しているパスワードが必須となります。</h6>
+       <br>
+       <ul class="collapsible">
+         <li>
+           <div class="collapsible-header"><i class="material-icons">filter_drama</i>Email</div>
+            <div class="collapsible-body"><span>
+             <div class="field">
+             <%= f.label :email %><br />
+             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+             </div>
+           </span></div>
+         </li>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+         <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+         <li>
+           <div class="collapsible-header"><i class="material-icons">place</i>Password</div>
+             <div class="collapsible-body"><span>
+               <div class="field">
+                 <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+                 <%= f.password_field :password, autocomplete: "off" %>
+                 <% if @minimum_password_length %>
+                 <br/>
+                 <em><%= @minimum_password_length %> characters minimum</em>
+                 <% end %>
+               </div>
+            </span></div>
+         </li>
+         <li>
+           <div class="collapsible-header"><i class="material-icons">whatshot</i>Nickname</div>
+             <div class="collapsible-body"><span>
+               <div class="label"><%= f.label :nickname %><br />
+                 <%= f.text_field :nickname %>
+               </div>
+             </span></div>
+         </li>
+         <li>
+            <div class="collapsible-header"><i class="material-icons">whatshot</i>Image</div>
+              <div class="collapsible-body"><span>
+                <div class="field">
+                 <%= f.file_field :avatar %>
+                </div>
+              </span></div>
+         </li>
+         <li>
+           <div class="collapsible-header"><i class="material-icons">whatshot</i>Birth</div>
+              <div class="collapsible-body"><span>
+                 <div class="label">
+                   <%= f.label :birth %><br />
+                   <%= f.text_field :birth %>
+                 </div>
+             </span></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">whatshot</i>Field</div>
+            <div class="collapsible-body"><span>
+               <div class="label"><%= f.label :field %><br/>
+                 <%= f.text_field :field %>
+               </div>
+            </span></div>
+        </li>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+
+      <li class="active">
+         <div class="collapsible-header"><i class="material-icons">place</i>Current Password (変更には現在のパスワードが必須となります。)</div>
+            <div class="collapsible-body"><span>
+               <div class="field">
+                 <%= f.label :current_password %> <i>(変更には現在のパスワードが必須となります。)</i><br/>
+                 <%= f.password_field :current_password, autocomplete: "off" %>
+               </div>
+            </span>
+          </div>
+      </ul>
 
 
-  <div class="label"><%= f.label :nickname %><br />
-  <%= f.text_field :nickname %></div>
-
-  <div class="label"><%= f.label :birth %><br />
-  <%= f.text_field :birth %></div>
-
-  <div class="label"><%= f.label :field %><br />
-  <%= f.text_field :field %></div>
-
-
-  <div class="field">
-  <%= f.file_field :avatar %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+      <div class="actions">
+         <%= f.submit "Update" %>
+     </div>
 <% end %>
-
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>
+</div>
+</div>

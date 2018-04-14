@@ -1,47 +1,51 @@
-<div class="row">
-        <div class="col s12 m7">
+<div class = "row">
+  <div class = "container">
+    <div class = "col s2">
+    </div>
+        <div class="col s8">
           <div class="card">
             <div class="card-image">
               <img src="<%= @product.image %>">
             </div>
-           <div class = "card-content">
-              <div class="col s5">
-                <img src="<%= @product.user.avatar %>" alt="" class="circle responsive-img">
-              </div>
-              <div class="col s5 right-align">
-                <span class="black-text">
+
+        <ul class="collection">
+          <li class="collection-item">
+              <span class="black-text">
                   <%= link_to "#{@product.user.nickname}",  user_path(@product.user.id) %>
-                </span>
-              </div>
-            </div>
-            <div class="card-content">
-              <%= @product.description %>
-            </div>
-            <div class="card-action">
+              </span>
+          </li>
+          <li class="collection-item">
+              <%= @product.content %>
+          </li>
+          <li class="collection-item">
               <a href="<%= @product.url1 %>">Link1</a>
+              <br>
               <a href="<%= @product.url2 %>">Link2</a>
-            </div>
-
-            <%= link_to @product, class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-left"></i>
-             <span>SHOW</span>
+          </li>
+          <li class="collection-item">
+             <%= link_to @product, class: "waves-effect waves-light btn" do %>
+               <i class="fa fa-arrow-left"></i>
+               <span>COMMENT</span>
              <% end %>
+             <% if user_signed_in? && current_user. id == @product.user_id %>
+               <%= link_to edit_product_path(@product), class: "waves-effect waves-light btn" do %>
+                 <i class="fa fa-arrow-left"></i>
+                 <span>編集</span>
+               <% end %>
 
-            <% if user_signed_in? && current_user. id == @product.user_id %>
-            <%= link_to edit_product_path(@product), class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-left"></i>
-             <span>編集</span>
+               <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn" do %>
+                 <i class="fa fa-arrow-left"></i>
+                 <span>削除</span>
+               <% end %>
              <% end %>
+          </li>
+        </ul>
+       </div>
 
-             <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-left"></i>
-             <span>削除</span>
-             <% end %>
-            <% end %>
-          </div>
-          <%= link_to products_path , class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-right"></i>
+        <%= link_to products_path , class: "waves-effect waves-light btn" do %>
+             <i class="fa fa-arrow-right"></i>
              <span>戻る</span>
-             <% end %>
-        </div>
+        <% end %>
+    </div>
+  </div>
 </div>

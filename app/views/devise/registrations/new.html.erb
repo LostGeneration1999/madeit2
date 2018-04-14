@@ -1,7 +1,12 @@
-<div id="index-banner" class="parallax-container">
-  <div class="section no-pad-bot">
+
    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
      <%= devise_error_messages! %>
+
+     <div class="parallax-container-offset valign-wrapper">
+     </div>
+
+     <div id="index-banner" class="parallax-container-spread ">
+     <div class="section no-pad-bot">
       <div class="container">
         <h1 class="header center teal-text text-lighten-2">Email Registration</h1>
         <div class="row center">
@@ -18,7 +23,7 @@
       </div>
     </div>
 
-  <div class="parallax-container valign-wrapper">
+  <div class="parallax-container-spread">
     <div class="section no-pad-bot">
       <div class="container">
         <h1 class="header center teal-text text-lighten-2">Password Registration</h1>
@@ -42,25 +47,23 @@
       </div>
     </div>
   </div>
-        <br><br>
 
-  <div class="parallax-container valign-wrapper">
+
+  <div class="parallax-container-spread">
     <div class="section no-pad-bot">
      <div class="container">
         <h1 class="header center teal-text text-lighten-2">Nickname Registration</h1>
         <div class="row center">
-          <h5 class="header col s12 light">
-        <!--       <input id="email" type="email" class="validate">
-              <label for="email">Email</label> -->
-              <%= f.label :nickname %><br />
-              <%= f.email_field :nickname %>
+          <h5 class="header col s12 light label">
+              <%= f.label :nickname %><br>
+              <%= f.text_field :nickname %>
             </h5>
           </div>
         </div>
       </div>
     </div>
 
-  <div class="parallax-container valign-wrapper">
+  <div class="parallax-container-spread">
     <div class="section no-pad-bot">
     <div class="container">
         <h1 class="header center teal-text text-lighten-2">Image Registration</h1>
@@ -77,10 +80,11 @@
 
 <!--   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot"> -->
+     <div class="parallax-container-spread">
     <div class="container">
         <h1 class="header center teal-text text-lighten-2">Field Registration</h1>
         <div class="row center">
-          <h5 class="input-field col s12">
+          <h5 class="input-field col s12 center">
         <!--       <input id="email" type="email" class="validate">
               <label for="email">Email</label> -->
               <select>
@@ -95,12 +99,13 @@
             </h5>
           </div>
         </div>
+     </div>
 
-          <div class="actions">
+          <div class="actions center">
+            <div class="waves-effect waves-light btn-large">
             <%= f.submit "Sign up" %>
+            </div>
           </div>
-
-
 <% end %>
 
     <div class="container">

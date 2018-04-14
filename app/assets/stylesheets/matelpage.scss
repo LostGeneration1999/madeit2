@@ -1,6 +1,6 @@
 @import "materialize/components/color-variables";
-$primary-color: color("blue", "lighten-2") !default;
-$secondary-color: color("yellow", "base") !default;
+$primary-color: color("grey", "darken-4") !default;
+$secondary-color: color("teal ", "accent-1") !default;
 @import 'materialize';
 
 legend {
@@ -17,4 +17,21 @@ legend {
   /* 3 */
   white-space: normal;
   /* 1 */
+}
+.parallax-container-spread {
+  position: relative;
+  overflow: hidden;
+  height: 800px;
+}
+.parallax-container-offset {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+.parallax-background {
+  background-size: 1500px 500px;
+  background-image: url("/hardware.jpg")
+}
+.string-light-color {
+  color: #e3f2fd;
 }
