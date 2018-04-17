@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     collection do
       get :top
     end
+    resource :comments, only: [:create]
   end
   root 'products#top'
 end

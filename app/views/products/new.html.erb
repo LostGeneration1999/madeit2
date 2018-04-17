@@ -27,9 +27,16 @@
   </div>
 
   <div class="field">
-    <%= f.label :field_list, "分野" %><br>
-    <%= text_field_tag 'product[field_list]', @product.field_list.join(',') %>
+    <%= f.label :tag_list, "分野" %><br>
+    <%= text_field_tag 'product[tag_list]', @product.tag_list.join(',') %>
   </div>
+
+    <%= javascript_tag do %>
+
+      var myProject = {
+      all_tag_list: <%= raw @all_tag_list %>
+      };
+<% end %>
 
   <div class="actions">
   <button class="btn waves-effect waves-light" type="submit" name="action">Submit

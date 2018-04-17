@@ -42,10 +42,42 @@
         </ul>
        </div>
 
-        <%= link_to products_path , class: "waves-effect waves-light btn" do %>
-             <i class="fa fa-arrow-right"></i>
-             <span>戻る</span>
+
+  <div class="container">
+
+    <% if current_user %>
+      <%= form_tag("/products/#{@product.id}/comments", method: :post) do %>
+        <div class="row">
+          <div class="col s8">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">textsms</i>
+                <input type="text" id="autocomplete-input" class="autocomplete">
+                <label for="autocomplete-input">コメントする</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="comments">
+      <h4>＜コメント一覧＞</h4>
+      <% if @comments %>
+        <% @comments.each do |comment| %>
+          <p>
+            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+            <%= comment.text %>
+          </p>
         <% end %>
+      <% end %>
     </div>
+  </div>
+</div>
+
+    <%= link_to products_path , class: "waves-effect waves-light btn" do %>
+      <i class="fa fa-arrow-right"></i>
+      <span>戻る</span>
+    <% end %>
   </div>
 </div>

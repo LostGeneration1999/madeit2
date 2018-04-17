@@ -22,14 +22,6 @@
   <div class="col-lg-12">
     <h2><%= "#{@user.field}" %></h2>
   </div>
-  <div class="col-lg-12">
-    <h2><%= "#{@user.facebook_id}" %></h2>
-  </div>
-  <div class="col-lg-12">
-    <h2><%= "#{@user.twitter_id}" %></h2>
-  </div>
-  <div class="col-lg-12">
-    <h2><%= "#{@user.github_id}" %></h2>
   </div>
 
   <div class="col-lg-12">
@@ -64,7 +56,7 @@
               <%= product.description %>
             </div>
             <div>
-            <% product.field_list.each do |tag| %>
+            <% product.tag_list.each do |tag| %>
             <span class="label label-primary"><%= tag %></span>
             <% end %>
             </div>
