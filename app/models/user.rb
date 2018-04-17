@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :products
   has_many :comments
 
+  acts_as_taggable
   validates :email, presence: true
   validates :nickname, presence: true
   has_attached_file :avatar,

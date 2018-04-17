@@ -87,15 +87,11 @@
           <h5 class="input-field col s12 center">
         <!--       <input id="email" type="email" class="validate">
               <label for="email">Email</label> -->
-              <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">電子工作</option>
-                <option value="2">自作PC</option>
-                <option value="3">ロボット</option>
-                <option value="4">サーバー</option>
-                <option value="5">IoT</option>
-              </select>
               <label>Your Favorite Field</label>
+            <div class="field">
+              <%= f.label :tag_list, "分野" %><br>
+              <%= text_field_tag 'user[tag_list]', @user.tag_list.join(',') %>
+            </div>
             </h5>
           </div>
         </div>

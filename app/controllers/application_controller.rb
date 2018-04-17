@@ -18,12 +18,16 @@ class ApplicationController < ActionController::Base
   #   @email = current_user.nickname
   #   @image = current_user.image
   # end
+  #
+  #
+
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:update_account, keys: [:nickname, :avatar, :field, :birth])
-
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :avatar, :field, :birth])
-
+    devise_parameter_sanitizer.permit(:account_update) do |u|
+      u.permit(:email, :password,:password_confirmation, :nickname, :avatar, :birth,:current_password,:tag_list, {:tag_list => []})
+    end
+    devise_parameter_sanitizer.permit(:sign_up) do |u|
+      u.permit(:email, :password,:password_confirmation, :nickname, :avatar, :birth, :tag_list, {:tag_list => []})
+    end
   end
-
 end

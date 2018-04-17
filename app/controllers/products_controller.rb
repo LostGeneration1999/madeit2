@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-
   end
 
   def create
@@ -20,6 +19,7 @@ class ProductsController < ApplicationController
                                image: product_params[:image],description: product_params[:description])
     @product.tag_list.add(product_params[:tag_list], parse: true)
     @product.save
+    redirect_to action: :index
   end
 
   def show
@@ -29,14 +29,10 @@ class ProductsController < ApplicationController
   def destroy
     product = Product.find(params[:id])
     product.destroy if product.user_id ==  current_user.id
+    redirect_to action: :index
   end
 
  private
-
-
-  # def set_item
-  #   @item = Product.find(params[:image])
-  # end
    # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
     params.require(:product).permit(:name,:content, :url1, :url2,:description, :image, :tag_list)
