@@ -8,61 +8,18 @@
 <!--   <div class="col s12 m8 l9"> -->
     <div class="row">
     <div class="col s12 m8">
-      <% @products.each do |product| %>
-          <div class="card">
-            <div class="card-image">
-              <img src="<%= product.image %>">
-              <span class="card-title">
-                <%= product.name %>
-              </span>
-            </div>
-
-            <ul class="collection">
-              <li class="collection-item">
-              <div class="col s4">
-
-                </div>
-         <div class="col s5 right-align">
-                  <span class="black-text">
-                    <%= link_to "#{product.user.nickname}",  user_path(product.user.id) %>
-                  </span>
-           <!--削除したアカウントがあるとuser.idがないとエラーを吐く-->
-       </div>
-              </li>
-
-              <li class="collection-item">
-                <%= product.content %>
-              </li>
-
-              <li class="collection-item">
-                <%= render 'products/tag_list', tag_list: product.tag_list %>
-              </li>
-
-              <li class="collection-item">
-                <%= link_to product, class: "waves-effect waves-light btn" do %>
-                  <i class="fa fa-arrow-left"></i>
-                  <span>SHOW</span>
-                <% end %>
-
-              <% if user_signed_in? && current_user. id == product.user_id %>
-                <%= link_to edit_product_path(product), class: "waves-effect waves-light btn" do %>
-                  <i class="fa fa-arrow-left"></i>
-                 <span>編集</span>
-               <% end %>
-
-                <%= link_to product, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn" do %>
-                  <i class="fa fa-arrow-left"></i>
-                  <span>削除</span>
-                <% end %>
-              <% end %>
-            </li>
-            </ul>
-          <% end %>
-        </div>
+        <%= render 'products/product' %>
       </div>
     </div>
-    <div class="col s12 m9 grey darken-3">
-    <%= paginate(@products) %>
+    <div class="col s12 m12 grey darken-3">
+      <ul class="pagination">
+        <li class="waves-effect waves-light btn col s12">
+          <div class="content">
+          <%= link_to_next_page @products , 'もっと見る' , :remote => true%>
+          </div>
+        </li>
+      </ul>
+
 <!--   </div> -->
     </div>
   </div>

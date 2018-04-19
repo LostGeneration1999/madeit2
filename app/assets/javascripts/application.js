@@ -15,4 +15,9 @@
 //= require turbolinks
 //= require_tree .
 //= require materialize
-
+//= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
+//= require jquery.infinitescroll
+//= require turbolinks
+//= require_tree .

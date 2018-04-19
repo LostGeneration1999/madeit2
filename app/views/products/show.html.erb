@@ -23,10 +23,24 @@
               <a href="<%= @product.url2 %>">Link2</a>
           </li>
           <li class="collection-item">
-             <%= link_to @product, class: "waves-effect waves-light btn" do %>
-               <i class="fa fa-arrow-left"></i>
-               <span>COMMENT</span>
-             <% end %>
+            <% if current_user %>
+              <%= form_for [@product, @comment] do |f| %>
+                <div class="row">
+                  <div class="col s11">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">textsms</i>
+                        <%= f.content_field :content %>
+                        <label for="autocomplete-input">Autocomplete</label>
+              <% end %>
+            <% end %>
+            </div>
+            </div>
+            </div>
+            </div>
+          </li>
+          </li>
+          <li class="collection-item">
              <% if user_signed_in? && current_user. id == @product.user_id %>
                <%= link_to edit_product_path(@product), class: "waves-effect waves-light btn" do %>
                  <i class="fa fa-arrow-left"></i>
@@ -42,24 +56,15 @@
         </ul>
        </div>
 
+        <%= link_to products_path , class: "waves-effect waves-light btn" do %>
+             <i class="fa fa-arrow-right"></i>
+             <span>戻る</span>
+        <% end %>
+    </div>
+  </div>
 
   <div class="container">
-
-    <% if current_user %>
-      <%= form_tag("/products/#{@product.id}/comments", method: :post) do %>
-        <div class="row">
-          <div class="col s8">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">textsms</i>
-                <input type="text" id="autocomplete-input" class="autocomplete">
-                <label for="autocomplete-input">コメントする</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <!-- ここからフォーム -->
 
     <div class="comments">
       <h4>＜コメント一覧＞</h4>
@@ -75,9 +80,3 @@
   </div>
 </div>
 
-    <%= link_to products_path , class: "waves-effect waves-light btn" do %>
-      <i class="fa fa-arrow-right"></i>
-      <span>戻る</span>
-    <% end %>
-  </div>
-</div>
