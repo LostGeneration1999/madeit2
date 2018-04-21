@@ -13,15 +13,6 @@ class ApplicationController < ActionController::Base
     '/products' # サインアウト後のリダイレクト先URL
     end
 
-  # def get_current_bar
-  #   # @nickname = current_user.nickname
-  #   @email = current_user.nickname
-  #   @image = current_user.image
-  # end
-  #
-  #
-
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:email, :password,:password_confirmation, :nickname, :avatar, :birth,:current_password,:tag_list, {:tag_list => []})

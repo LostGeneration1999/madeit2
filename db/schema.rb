@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414115656) do
+ActiveRecord::Schema.define(version: 20180421082013) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20180414115656) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4, null: false
+    t.integer  "product_id", limit: 4, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["product_id"], name: "index_likes_on_product_id", using: :btree
+  add_index "likes", ["user_id", "product_id"], name: "index_likes_on_user_id_and_product_id", unique: true, using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        limit: 255

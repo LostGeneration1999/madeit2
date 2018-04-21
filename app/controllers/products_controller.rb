@@ -24,6 +24,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @comments = Comment.new
+
   end
 
   def destroy

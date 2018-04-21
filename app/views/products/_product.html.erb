@@ -34,6 +34,12 @@
                   <span>SHOW</span>
                 <% end %>
 
+                <li id="product-<%= product.id %>" >
+                  <span class="timestamp">
+                  </span>
+                  <%= render "products/likes" , product: product %>
+                </li>
+
               <% if user_signed_in? && current_user. id == product.user_id %>
                 <%= link_to edit_product_path(product), class: "waves-effect waves-light btn" do %>
                   <i class="fa fa-arrow-left"></i>

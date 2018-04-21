@@ -1,0 +1,23 @@
+<% @products.each do |product| %>
+
+  <span class="like">
+    <% if product.user_exist?(current_user) %>
+      <!--すでにいいね！を押してるかどうかの判定-->
+
+      <% form_for(product.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
+      <div class="waves-effect waves-light btn">
+        <span>Like</span>
+      </div>
+        <% end %>
+
+    <% else %>
+      <% form_for(product.likes.build, remote: true ) do |f| %>
+        <div><%= hidden_field_tag :product_id, product.id %> </div>
+        <!--隠しタグ-->
+      <div class="waves-effect waves-light btn">
+        <span></span>
+      </div>
+    <% end %>
+      <% end %>
+      </span>
+<% end %>
