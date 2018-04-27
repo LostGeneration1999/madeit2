@@ -4,26 +4,9 @@
     </div>
         <div class="col s8">
           <div class="card">
-            <div class="card-image">
-              <img src="<%= @product.image %>">
-            </div>
+              <%= render 'products/product' , a_product: @product %>
 
-        <ul class="collection">
           <li class="collection-item">
-              <span class="black-text">
-                  <%= link_to "#{@product.user.nickname}",  user_path(@product.user.id) %>
-              </span>
-          </li>
-          <li class="collection-item">
-              <%= @product.content %>
-          </li>
-          <li class="collection-item">
-              <a href="<%= @product.url1 %>">Link1</a>
-              <br>
-              <a href="<%= @product.url2 %>">Link2</a>
-          </li>
-          <li class="collection-item">
-            <% if current_user %>
               <%= form_for [@product, @comments] do |f| %>
                 <div class="row">
                   <div class="col s11">
@@ -32,12 +15,11 @@
                         <i class="material-icons prefix">textsms</i>
                         <%= f.text_field :content %>
                         <!--<label for="autocomplete-input">Autocomplete</label>-->
-                  <%= button_tag tyoe: "submit", class: "waves-effect waves-light btn" do %>
-                  投稿する<i class="fa fa-arrow-left"></i>
-                          <%= f.submit %>
+                  <%= button_tag type: "submit", class: "waves-effect waves-light btn" do %>
+                  <i class="fa fa-arrow-left"></i>
+                          <%= f.submit "投稿する" %>
               <% end %>
               <% end %>
-            <% end %>
             </div>
             </div>
             </div>
@@ -60,20 +42,6 @@
               <% end %>
             </div>
         </li>
-          <li class="collection-item">
-             <% if user_signed_in? && current_user. id == @product.user_id %>
-               <%= link_to edit_product_path(@product), class: "waves-effect waves-light btn" do %>
-                 <i class="fa fa-arrow-left"></i>
-                 <span>編集</span>
-               <% end %>
-
-               <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn" do %>
-                 <i class="fa fa-arrow-left"></i>
-                 <span>削除</span>
-               <% end %>
-             <% end %>
-          </li>
-        </ul>
        </div>
 
         <%= link_to products_path , class: "waves-effect waves-light btn" do %>
@@ -84,7 +52,6 @@
   </div>
 
   <div class="container">
-    <!-- ここからフォーム -->
 
   </div>
 </div>

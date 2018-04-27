@@ -8,14 +8,13 @@ Rails.application.routes.draw do
     get 'users/:id/edit' => 'users/registrations#edit'
   end
 
-resources :likes, only: [:create, :destroy]
-
   resources :users, only: [:edit, :show]
   resources :products do
     collection do
       get :top
     end
     resources :comments, only: [:destroy, :create]
+    resources :likes, only: [:create, :destroy]
   end
   root 'products#top'
 end

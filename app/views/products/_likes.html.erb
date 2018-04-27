@@ -1,23 +1,24 @@
-<% @products.each do |product| %>
-
-  <span class="like">
-    <% if product.user_exist?(current_user) %>
-      <!--すでにいいね！を押してるかどうかの判定-->
-
-      <% form_for(product.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
-      <div class="waves-effect waves-light btn">
-        <span>Like</span>
-      </div>
-        <% end %>
+<span class="like">
+  <% if current_user %>
+    <% if a_product.user_exist?(current_user) %>
+      <!--すでにいいね！を押してるかどうかの判定　それに応じて画像を変更している-->
+      <%= form_for [a_product,@like],url: product_like_path(a_product.id,@like.id),method: :delete do |f| %>
+       <% button_tag(type: "submit",class: "waves-effect waves-light btn") do %>
+        <i class="fa fa-arrow-left"></i>
+        　　<%= f.submit "いいね解除" %>
+           <% end %>
+       <% end %>
 
     <% else %>
-      <% form_for(product.likes.build, remote: true ) do |f| %>
-        <div><%= hidden_field_tag :product_id, product.id %> </div>
-        <!--隠しタグ-->
-      <div class="waves-effect waves-light btn">
-        <span></span>
+      <div class = "action">
+        <!--, url: product_likes_path(a_product.id)はpathが複数形なのでなくても良い-->
+      <%= form_for [a_product, @likes], methos: :post do |f| %>
+          <%= button_tag type: "submit", class: "waves-effect waves-light btn" do %>
+            <i class="fa fa-arrow-left"></i>
+            <%= f.submit "いいね" %>
+           <% end %>
+          <% end %>
       </div>
     <% end %>
-      <% end %>
-      </span>
-<% end %>
+    <% end %>
+  </span>

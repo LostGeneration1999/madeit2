@@ -1,11 +1,14 @@
 class CommentsController < ApplicationController
   def destroy
     Comment.find(params[:id]).destroy
+    redirect_to "/products"
   end
 
   def create
    Comment.create(comment_params)
-    redirect_to controller: :products, action: :index
+   @product = Product.find_by(params[:id])
+   #find_byのせいで変なページにいく
+    redirect_to "/products"
   end
 
   private
