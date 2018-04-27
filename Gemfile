@@ -55,3 +55,4 @@ gem 'paperclip'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
+

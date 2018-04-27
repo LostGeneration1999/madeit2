@@ -1,88 +1,28 @@
 <!-- app/views/users/_form.html.erb -->
-<div class="row form user_profile">
-  <div class = "row">
-  <div class = "container">
-    <div class = "col s2">
-    </div>
-<% lists = ["two","three","four","five","six"] %>
-<% i = 0 %>
 
-<% @products.each do |product| %>
-      <div class="carousel">
-        <a class="carousel-item" href="#one!"><img src="<%= @user.avatar %>"></a>
-        <a class="carousel-item" href="#{lists[i]}!"><img src="<%= product.image %>"></a>
-      </div>
-      <% i = i + 1 %>
-    <% end %>
-
-
-  <div class="col-lg-12">
-    <h2><%= "#{@user.birth}" %></h2>
-  </div>
-  <div class="col-lg-12">
-    <h2><%= "#{@user.field}" %></h2>
-  </div>
-  </div>
-
-  <div class="col-lg-12">
-  <%= link_to '編集する' ,edit_user_path %>
-  </div>
-
-
-
-<div class="col s8">
-  <% @products.each do |product| %>
-     <div class="row">
-        <div class="col s7 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src="<%= product.image.url %>">
-              <span class="card-title">
-                <%= product.name %>
-              </span>
-            </div>
-            <div class="col s4">
-              <img src="<%= product.user.avatar %>" alt="" class="circle responsive-img">
-            </div>
-            <div class="col s10">
-              <span class="black-text">
-                <%= link_to "#{@user.nickname}",  user_path(@user.id) %>
-              </span>
-            </div>
-            <div class="card-content">
-              <%= product.description %>
-            </div>
-            <div class="card-content">
-              <%= product.description %>
-            </div>
-            <div>
-            <% product.tag_list.each do |tag| %>
-            <span class="label label-primary"><%= tag %></span>
-            <% end %>
-            </div>
-
-            <%= link_to product, class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-left"></i>
-             <span>SHOW</span>
-             <% end %>
-
-            <% if user_signed_in? && current_user. id == product.user_id %>
-            <%= link_to edit_product_path(product), class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-left"></i>
-             <span>編集</span>
-             <% end %>
-
-             <%= link_to product, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-left"></i>
-             <span>削除</span>
-             <% end %>
-            <% end %>
-
+<div class="container">
+  <div class="row">
+    <div class="section">
+      <div class="row" id="product_cards">
+        <div class="col s12 m8">
+          <div class="col-lg-12">
+            <h2><%= "#{@user.birth}" %></h2>
+          </div>
+          <div class="col-lg-12">
+            <h2><%= "#{@user.field}" %></h2>
           </div>
         </div>
+        <div class="col-lg-12">
+          <%= link_to '編集する' ,edit_user_path %>
+        </div>
+    </div>
+
+      <div class="section">
+      <div class="page">
+      <%= render 'products/index_to_product' , products: @products %>
       </div>
-   <% end %>
-</div>
+      </div>
+
 </div>
 </div>
 </div>

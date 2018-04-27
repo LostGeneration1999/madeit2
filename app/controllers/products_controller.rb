@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     #create時に生成するインスタンス
     @like = Like.find_by(user_id: current_user.id)
     #destroy時にテーブルから探し出す
-    @products = Product.order("created_at DESC").page(params[:page]).per(3)
+    @products = Product.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @like = Like.find_by(user_id: current_user.id, product_id: params[:product_id])
+    @like = Like.find_by(user_id: current_user.id)
     @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
     @comments = Comment.new
   end

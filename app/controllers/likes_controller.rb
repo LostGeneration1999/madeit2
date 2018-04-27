@@ -1,6 +1,8 @@
 class LikesController < ApplicationController
   def create
     Like.create(like_params)
+
+
     redirect_to controller: :products, action: :index
       # product_idはネストしているのでproduct_idのデータが@likeに添加されている？
       # ん？待てよ？これってproduct_controllerからやっちゃいかんの？　-> ルーティングでこのアクションまで飛んでるのでだめ

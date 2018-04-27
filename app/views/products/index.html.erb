@@ -3,30 +3,32 @@
 <!-- Page Layout here -->
 <div class="container">
  <div class="row">
-  <div class="col s12 m2 l2">
-  </div>
 <!--   <div class="col s12 m8 l9"> -->
-    <div class="row">
-    <div class="col s12 m8">
-      <% @products.each do |a_product| %>
-        <div class="card">
-        <%= render 'products/product' , a_product: a_product %>
-        </ul>
-      </div>
-        <% end %>
-    </div>
-    <div class="col s12 m12 grey darken-3">
-      <ul class="pagination">
-        <li class="waves-effect waves-light btn col s12">
-          <div class="content">
-          <%= link_to_next_page @products , 'もっと見る' , :remote => true%>
-          </div>
-        </li>
-      </ul>
+    <div class="row" id="product_cards">
 
-   </div>
+      <div class="page">
+      <%= render 'products/index_to_product' , products: @products %>
+      </div>
+
+
     </div>
+    <!--<div class="col s12 m12 grey darken-3">-->
+      <!--<ul class="pagination">-->
+        <!--<li class="waves-effect waves-light btn col s12">-->
+          <!--<div class="content">-->
+
+          <!--</div>-->
+        <!--</li>-->
+      <!--</ul>-->
+
+   <!--</div>-->
+    </div>
+
   </div>
 </div>
 
+
+
+<%= paginate @products %>
+<%= link_to_next_page @products , 'Next Page' , class: 'btn btn-lg btn-block btn-primary'%>
 
