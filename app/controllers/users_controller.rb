@@ -5,6 +5,6 @@ class UsersController < ApplicationController
     #create時に生成するインスタンス
     @like = Like.find_by(user_id: current_user.id)
     @nickname = @user.nickname
-    @products = Product.where(user_id: @user.id).page(params[:page]).per(5).order("created_at DESC")
+    @products = Product.where(user_id: @user.id).page(params[:page]).per(3).order("created_at DESC")
   end
 end

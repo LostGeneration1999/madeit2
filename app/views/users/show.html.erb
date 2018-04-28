@@ -2,27 +2,56 @@
 
 <div class="container">
   <div class="row">
+
+
     <div class="section">
-      <div class="row" id="product_cards">
-        <div class="col s12 m8">
-          <div class="col-lg-12">
-            <h2><%= "#{@user.birth}" %></h2>
+      <div class="col s6">
+        <a>My introduction</a>
+        <div class="card">
+         <div class="blue-grey darken-1">
+          <div class="card-content white-text">
+            <ul class="collection">
+
+              <li class="collection-item">
+                <img src="<%= @user.avatar %>">
+              </li>
+              <li class="collection-item">
+                  <a>nick name :    <%= @user.nickname %><br></a>
+              </li>
+              <li class="collection-item">
+                  <a>email :   <%= @user.email %></a>
+              </li>
+              <li class="collection-item">
+                  <a>birth :   <%= @user.birth %></a>
+              </li>
+              <li class="collection-item">
+                  <a>interest :    <%= @user.tag_list %></a>
+              </li>
+            </ul>
           </div>
-          <div class="col-lg-12">
-            <h2><%= "#{@user.field}" %></h2>
+           <div class="center">
+             <%= link_to '編集する' ,edit_user_path, class: "btn waves-effect waves-light" %>
+           </div>
+        </div>
+
+    </div>
+    </div>
+      <div class="col s6">
+        <a>Post Cards ...</a>
+        <div class="card">
+          <div class="blue-grey darken-1">
+          <div class="card">
+        <% @products.each do |a_product| %>
+            <%= render 'products/product' , a_product: a_product %>
+          <% end %>
+      </div>
           </div>
         </div>
-        <div class="col-lg-12">
-          <%= link_to '編集する' ,edit_user_path %>
-        </div>
+      </div>
     </div>
 
-      <div class="section">
-      <div class="page">
-      <%= render 'products/index_to_product' , products: @products %>
-      </div>
-      </div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
+<%= link_to_next_page @products , 'more read ....' , class: 'btn btn-lg btn-block btn-primary'%>
