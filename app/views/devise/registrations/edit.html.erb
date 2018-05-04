@@ -60,16 +60,41 @@
               <div class="collapsible-body"><span>
                  <div class="label">
                    <%= f.label :birth %><br />
-                   <%= f.text_field :birth %>
+                   <%= f.text_field :birth, class:  'datepicker'  %>
+                   <script>
+                       document.addEventListener('DOMContentLoaded', function() {
+                           var elems = document.querySelectorAll('.datepicker');
+                           var instances = M.Datepicker.init(elems, options);
+                       });
+
+                       // Or with jQuery
+
+                       $(document).ready(function(){
+                           $('.datepicker').datepicker();
+                       });
+                   </script>
                  </div>
              </span></div>
         </li>
         <li>
           <div class="collapsible-header"><i class="material-icons">whatshot</i>Field</div>
             <div class="collapsible-body"><span>
-               <div class="label"><%= f.label :tag_list %><br/>
-                 <%= f.text_field :tag_list %>
-               </div>
+              <div class="chips chips-placeholder">
+                    <%= f.label :tag_list, "field" %><br>
+                    <%= f.text_field :tag_list,value: current_user.tag_list.join(',') , class: 'custom-class' %>
+                  <script>
+                      document.addEventListener('DOMContentLoaded', function() {
+                        var elems = document.querySelectorAll('.chips');
+                          var instances = M.Chips.init(elems, options);
+                      });
+
+                      $('.chips').chips();
+                      $('.chips-placeholder').chips({
+                          placeholder: 'Enter a tag',
+                          secondaryPlaceholder: '+Tag',
+                      });
+                  </script>
+                </div>
             </span></div>
         </li>
 

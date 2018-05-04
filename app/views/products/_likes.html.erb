@@ -1,24 +1,20 @@
 <span class="like">
   <% if current_user %>
     <% if a_product.user_exist?(current_user) %>
+        <div class = "action">
       <!--すでにいいね！を押してるかどうかの判定　それに応じて画像を変更している-->
-      <%= form_for [a_product,@like],url: product_like_path(a_product.id,@like.id),method: :delete do |f| %>
-       <% button_tag(type: "submit",class: "waves-effect waves-light btn") do %>
-        <i class="fa fa-arrow-left"></i>
-        　　<%= f.submit "いいね解除" %>
+           <%= form_for [a_product,@like],url: product_like_path(a_product.id,@like.id),method: :delete, remote: true do |f| %>
+            <%= image_submit_tag("like.png",class: "main_img" )%>
            <% end %>
-       <% end %>
+        </div>
 
     <% else %>
-      <div class = "action">
+        <div class = "action">
         <!--, url: product_likes_path(a_product.id)はpathが複数形なのでなくても良い-->
-      <%= form_for [a_product, @likes], methos: :post do |f| %>
-          <%= button_tag type: "submit", class: "waves-effect waves-light btn" do %>
-            <i class="fa fa-arrow-left"></i>
-            <%= f.submit "いいね" %>
-           <% end %>
+          <%= form_for [a_product, @likes], method: :post, remote: true do |f| %>
+            <%= image_submit_tag("unlike.png",class: "main_img" ) %>
           <% end %>
       </div>
     <% end %>
-    <% end %>
-  </span>
+  <% end %>
+</span>

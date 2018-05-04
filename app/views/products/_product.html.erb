@@ -1,5 +1,5 @@
 
-        <div class="card-image">
+        <div class="card-image cover">
           <img src="<%= a_product.image %>">
           <span class="card-title">
             <%= a_product.name %>
@@ -9,7 +9,10 @@
         <ul class="collection">
           <li class="collection-item">
               <span class="black-text">
-                <%= link_to "#{a_product.user.nickname}",  user_path(a_product.user.id) %>
+                  <div class="chip">
+                  <img src="<%= a_product.user.avatar %>">
+                    <%= link_to "#{a_product.user.nickname}",  user_path(a_product.user.id) %>
+                   </div>
               </span>
        <!--削除したアカウントがあるとuser.idがないとエラーを吐く-->
           </li>
@@ -25,8 +28,9 @@
             <li id="product-<%= a_product.id %>" class="collection-item" >
               <span class="timestamp">
               </span>
-              <div> sss</div>
+              <div class="like-button-<%= a_product.id %>">
               <%= render 'products/likes' , a_product: a_product %>
+              </div>
             </li>
 
           <li class="collection-item">

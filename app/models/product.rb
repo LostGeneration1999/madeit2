@@ -7,19 +7,16 @@ class Product < ActiveRecord::Base
   # acts_as_ordered_taggable_on :fields  # field.tags_list が追加される
   acts_as_taggable  # acts_as_taggable_on :tags のエイリアス
 
-  # def like(user)
-  #   Like.create(user_id: user)
-    # product_idは@likeにデータが添加されているのだろう
-    # データベースにuserのidを含んだ情報を保存
-    # なぜモデルに書くのか？
-  # end
-
-  # def unlike(user)
-  #   Like.find_by(user_id: user).destroy
-  # end
-
   def user_exist?(user)
     like_users.include?(user)
     # いいねしたユーザーのなかにuserがいるかどうか
+  end
+
+  def self.search(keyword)
+    if keyword
+      Product.where([' name LIKE? ', "%#{keyword}%"])
+    else
+      Product.all
+    end
   end
 end

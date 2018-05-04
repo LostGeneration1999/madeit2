@@ -1,1 +1,1 @@
-$("#product-<%= a_product.id %> .like").html("<%= escape_javascript(render 'products/likes', a_product: a_product) %>");
+$(".like-button-<%= @product.id %>").html("<%= j(render partial: 'products/likes', locals: { a_product: @product }) %>")

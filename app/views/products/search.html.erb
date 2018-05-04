@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <% form_tag products_path, method: :get do %>
+        <%= text_field_tag :keyword, params[:keyword] %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </div>
+  </div>
+</div>

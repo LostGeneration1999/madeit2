@@ -2,12 +2,15 @@
 
 <div class="container">
   <div class="row">
-
+    <ul class="tabs">
+    <li class="tab col s6"><%= @user.nickname %>さんのマイページ</a></li>
+    <li class="tab col s3"><a href="#test1"><%= @user.nickname %>さんの投稿</a></li>
+    <li class="tab col s3"><a href="#test2"><%= @user.nickname %>さんのいいね！</a></li>
+    </ul>
 
     <div class="section">
       <div class="col s6">
-        <a>My introduction</a>
-        <div class="card">
+        <div class="card" id="test">
          <div class="blue-grey darken-1">
           <div class="card-content white-text">
             <ul class="collection">
@@ -25,7 +28,10 @@
                   <a>birth :   <%= @user.birth %></a>
               </li>
               <li class="collection-item">
-                  <a>interest :    <%= @user.tag_list %></a>
+                  <a>interest :
+                    <% @user.tag_list.each do |tag| %>
+                      <div class="chip"><%= tag %></div>
+                    <% end %>
               </li>
             </ul>
           </div>
@@ -37,19 +43,24 @@
     </div>
     </div>
       <div class="col s6">
-        <a>Post Cards ...</a>
-        <div class="card">
+        <div class="card" id = "test1">
           <div class="blue-grey darken-1">
           <div class="card">
-        <% @products.each do |a_product| %>
+          <% @products.each do |a_product| %>
             <%= render 'products/product' , a_product: a_product %>
           <% end %>
-      </div>
           </div>
+          </div>
+          </div>
+        <div id="test2">
+          <div class="blue-grey darken-1">
+          <div class="card">
+              <%= render 'products/product' , a_product: @like_products %>
         </div>
       </div>
     </div>
 
+</div>
 </div>
 </div>
 </div>

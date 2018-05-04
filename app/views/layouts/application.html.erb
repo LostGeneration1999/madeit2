@@ -51,14 +51,13 @@ m
 <% if user_signed_in? %>
 
     <ul id="slide-out" class="sidenav">
-      <li><div class="user-view">
+      <li>
         <div class="background">
           <img src="<%= current_user.avatar %>">
         </div>
         <a href="#user"><img class="circle" src="<%= current_user.avatar %>"></a>
         <a href="#name"><span class="black-text name"><%= current_user.nickname %></span></a>
-        <a href="#email"><span class="black-text email"><%= current_user.email %></span></a>
-      </div></li>
+        <a href="#email"><span class="black-text email"><%= current_user.email %></span></a></li>
 
       <li><%= link_to 'マイページを編集する', "/users/#{current_user.id}/edit" %></li>
       <li><div class="divider"></div></li>
@@ -81,6 +80,39 @@ m
           <%= link_to 'edit', "/products/new" %>
         </i>
       </li>
+
+     <li class="input_button" style="float: right">
+     <li  class="input_button" style="float: right">
+       <i class="material-icons">
+         <%= link_to 'search', "/products/search" %>
+       </i>
+     </li>
+       <script>
+           M.AutoInit();
+           document.addEventListener('DOMContentLoaded', function() {
+               var elems = document.querySelectorAll('.tap-target');
+               var instances = M.TapTarget.init(elems, options);
+           });
+
+           // Or with jQuery
+
+           $(document).ready(function(){
+               $('.tap-target').tapTarget();
+           });
+
+           var instance = M.TapTarget.getInstance(elem);
+           instance.next();
+           instance.close();
+       </script>
+       <!--<a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">menu</i></a>-->
+
+       <!--<div class="tap-target" data-target="menu">-->
+         <!--<div class="tap-target-content">-->
+           <!--<h5>Title</h5>-->
+           <!--<p>A bunch of text</p>-->
+         <!--</div>-->
+       <!--</div>-->
+     </li>
     <% if user_signed_in? %>
       <li class="input_button" style="float: right">
       <%= link_to 'サインアウト', destroy_user_session_path, method: :delete %>

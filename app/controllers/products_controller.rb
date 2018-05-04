@@ -6,11 +6,23 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
-    #create時に生成するインスタンス
-    @like = Like.find_by(user_id: current_user.id)
-    #destroy時にテーブルから探し出す
     @products = Product.order("created_at DESC").page(params[:page]).per(10)
+    if user_signed_in?
+
+    #create時に生成するインスタンス
+    @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
+
+    #destroy時にテーブルから探し出す
+    @like = Like.find_by(user_id: current_user.id)
+
+    @tag =  User.find(current_user.id).tag_list
+
+      @tag.each do |a_tag|
+        @test_page_number = 2
+        @tag_products = Product.search(a_tag)
+        @test_page_number += 1
+      end
+    end
   end
 
   def new
@@ -28,9 +40,16 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    if user_signed_in?
     @like = Like.find_by(user_id: current_user.id)
     @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
+    @like_list = Like.find_by(product_id: params[:product_id])
     @comments = Comment.new
+    end
+  end
+
+  def search
+   @search = Product.search(params[:keyword]).order("created_at DESC").page(params[:page]).per(3)
   end
 
   def destroy

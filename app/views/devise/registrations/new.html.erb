@@ -1,5 +1,9 @@
  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+   <div class="center red">
+     <h5>
      <%= devise_error_messages! %>
+     </h5>
+   </div>
 
      <div class="parallax-container-offset valign-wrapper">
      </div>
@@ -7,7 +11,7 @@
      <div id="index-banner" class="parallax-container-spread ">
      <div class="section no-pad-bot">
       <div class="container">
-        <h1 class="header center teal-text text-lighten-2">Email Registration</h1>
+        <h4 class="header center teal-text 　text-lighten-2">(1)  メールアドレスの登録</h4>
         <div class="row center">
           <h5 class="header col s12 light">
         <!--       <input id="email" type="email" class="validate">
@@ -25,21 +29,19 @@
   <div class="parallax-container-spread">
     <div class="section no-pad-bot">
       <div class="container">
-        <h1 class="header center teal-text text-lighten-2">Password Registration</h1>
+        <h4 class="header center teal-text text-lighten-2">(2)    パスワードの設定</h4>
         <div class="row center">
           <h5 class="header col s12 light">
         <!--       <input id="password" type="password" class="validate">
               <label for="password">Password</label> -->
                 <%= f.label :password %>
                 <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <em>(最大<%= @minimum_password_length %>文字まで)</em>
                 <% end %><br />
                 <%= f.password_field :password, autocomplete: "off" %>
             </h5>
-          <h5 class="input-field col s12">
-        <!--       <input id="password" type="password" class="validate">
-              <label for="password">Password</label> -->
-                <%= f.label :password_confirmation %><br />
+          <h5 class="header col s12 light label">
+                <%= f.label :password_confirmation %>
                 <%= f.password_field :password_confirmation, autocomplete: "off" %>
             </h5>
         </div>
@@ -51,10 +53,10 @@
   <div class="parallax-container-spread">
     <div class="section no-pad-bot">
      <div class="container">
-        <h1 class="header center teal-text text-lighten-2">Nickname Registration</h1>
+        <h4 class="header center teal-text text-lighten-2">(3)    ユーザー名の登録</h4>
         <div class="row center">
           <h5 class="header col s12 light label">
-              <%= f.label :nickname %><br>
+              <%= f.label :nickname %>
               <%= f.text_field :nickname %>
             </h5>
           </div>
@@ -65,11 +67,12 @@
   <div class="parallax-container-spread">
     <div class="section no-pad-bot">
     <div class="container">
-        <h1 class="header center teal-text text-lighten-2">Image Registration</h1>
+        <h4 class="header center teal-text text-lighten-2">(4)    ユーザー画像の登録</h4>
         <div class="row center">
           <h5 class="header col s12 light">
         <!--       <input id="email" type="email" class="validate">
               <label for="email">Email</label> -->
+                <%= f.label :image %><br>
                 <%= f.file_field :avatar %>
             </h5>
           </div>
@@ -77,18 +80,44 @@
       </div>
     </div>
 
+   <div class="parallax-container-spread">
+     <div class="container">
+       <h4 class="header center teal-text text-lighten-2">(5)   生年月日</h4>
+       <div class="row center">
+         <h5 class="input-field col s12 center">
+           <!--       <input id="email" type="email" class="validate">
+                 <label for="email">Email</label> -->
+           <div class="field">
+             <%= f.label :birth %><br/>
+             <%= f.text_field :birth, class:  'datepicker'  %>
+             <script>
+                 document.addEventListener('DOMContentLoaded', function() {
+                     var elems = document.querySelectorAll('.datepicker');
+                     var instances = M.Datepicker.init(elems, options);
+                 });
+
+                 // Or with jQuery
+
+                 $(document).ready(function(){
+                     $('.datepicker').datepicker();
+                 });
+             </script>
+           </div>
+         </h5>
+       </div>
+     </div>
+   </div>
 <!--   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot"> -->
      <div class="parallax-container-spread">
     <div class="container">
-        <h1 class="header center teal-text text-lighten-2">Field Registration</h1>
+        <h4 class="header center teal-text text-lighten-2">(6)    関心のある分野をご登録ください(最大3つ)</h4>
         <div class="row center">
           <h5 class="input-field col s12 center">
         <!--       <input id="email" type="email" class="validate">
               <label for="email">Email</label> -->
-              <label>Your Favorite Field</label>
             <div class="field">
-              <%= f.label :tag_list, "分野" %><br>
+              <%= f.label :tag_list, "Your interest field" %>
               <%= text_field_tag 'user[tag_list]', @user.tag_list.join(',') %>
             </div>
             </h5>
@@ -96,17 +125,28 @@
         </div>
      </div>
 
-          <div class="actions center">
-            <div class="waves-effect waves-light btn-large">
-            <%= f.submit "Sign up" %>
-            </div>
-          </div>
+   <div class="parallax-container-spread">
+     <div class="container">
+       <h4 class="header center teal-text text-lighten-2">最後に</h4>
+       <div class="row center">
+         <h5 class="input-field col s12 center">
+           <!--       <input id="email" type="email" class="validate">
+                 <label for="email">Email</label> -->
+           それではMade ITを楽しんでください！
+         </h5>
+         <div class="actions center">
+           <div class="waves-effect waves-light btn-large">
+             <%= f.submit "Sign up" %>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+
+
 <% end %>
 
-    <div class="container">
-          <div class="waves-effect waves-light btn-large">
-           <%= render "devise/shared/links" %>
-          </div>
 
           <div class="input-field col s12">
             <select>

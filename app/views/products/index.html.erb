@@ -3,14 +3,29 @@
 <!-- Page Layout here -->
 <div class="container">
  <div class="row">
-
+   <div class="col s12">
+     <ul class="tabs">
+       <% n = 0 %>
+       <% if user_signed_in? %>
+         <% split_number = 12 / (@tag.count+1) %>
+           <% @tag.each do |tag| %>
+           <li class="tab col s<%= split_number %>"><a href="#test<%= n+2 %>"><%= tag %></a></li>
+             <% n = n + 1 %>
+           <% end %>
+         <li class="tab col s<%= split_number %>"><a class="active"  href="#test1">標準</a></li>
+       <% end %>
+     </ul>
+   </div>
 <!--   <div class="col s12 m8 l9"> -->
     <div class="row" id="product_cards">
 
-      <div class="page">
+      <div class="page" id="test1">
       <%= render 'products/index_to_product' , products: @products %>
       </div>
 
+      <div class="page" id ="test<%= @test_page_number %>">
+        <%= render 'products/index_to_product' , products: @tag_products %>
+      </div>
 
     </div>
     <!--<div class="col s12 m12 grey darken-3">-->
@@ -27,9 +42,9 @@
 
   </div>
 </div>
+<div id = "test1">
+  <%= link_to_next_page @products , 'Next Page' , class: 'btn btn-lg btn-block btn-primary'%>
+</div>
 
 
-
-
-<%= link_to_next_page @products , 'Next Page' , class: 'btn btn-lg btn-block btn-primary'%>
 

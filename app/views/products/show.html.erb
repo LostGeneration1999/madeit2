@@ -3,7 +3,7 @@
     <div class = "col s2">
     </div>
         <div class="col s8">
-          <div class="card">
+          <ul class="card">
               <%= render 'products/product' , a_product: @product %>
 
           <li class="collection-item">
@@ -24,30 +24,34 @@
             </div>
             </div>
             </div>
-          </li>
-          <li class="collection-item">
+          <li class="collection-item grey darken-3">
             <div class="comments">
-              <h4>＜コメント一覧＞</h4>
+              <div class="center">
+              <h5 class="white-text">Comment</h5>
+              </div>
+              <ul class="collection with-header">
               <% @product.comments.each do |comment| %>
-                <p>
+              <li class="collection-item"><div>
                   <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
                   <%= comment.content %>
+                <a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
                   <% if comment.user_id == current_user.id %>
                     <%= link_to product_comment_path(@product,comment), method: :delete , class: "waves-effect waves-light btn" do %>
                       <i class="fa fa-arrow-left"></i>
                       <span>コメント削除</span>
                     <% end %>
                   <% end %>
-                </p>
+              </li>
               <% end %>
+              </ul>
             </div>
         </li>
-       </div>
-
+      <div class="center">
         <%= link_to products_path , class: "waves-effect waves-light btn" do %>
              <i class="fa fa-arrow-right"></i>
              <span>戻る</span>
         <% end %>
+      </div>
     </div>
   </div>
 
