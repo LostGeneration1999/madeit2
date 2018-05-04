@@ -5,12 +5,11 @@
  <div class="row">
    <div class="col s12">
      <ul class="tabs">
-       <% n = 0 %>
        <% if user_signed_in? %>
          <% split_number = 12 / (@tag.count+1) %>
            <% @tag.each do |tag| %>
-           <li class="tab col s<%= split_number %>"><a href="#test<%= n+2 %>"><%= tag %></a></li>
-             <% n = n + 1 %>
+           <% @tag_number = @tag.index("#{tag}").to_i %>
+           <li class="tab col s<%= split_number %>"><a href="#test<%= @tag_number + 2 %>"><%= tag %></a></li>
            <% end %>
          <li class="tab col s<%= split_number %>"><a class="active"  href="#test1">標準</a></li>
        <% end %>
@@ -20,14 +19,19 @@
     <div class="row" id="product_cards">
 
       <div class="page" id="test1">
-      <%= render 'products/index_to_product' , products: @products %>
+       <%= render 'products/index_to_product' , products: @products %>
+
       </div>
 
-      <div class="page" id ="test<%= @test_page_number %>">
-        <%= render 'products/index_to_product' , products: @tag_products %>
-      </div>
+      <% n = 0 %>
+      <% @tag_products.each do |a_tag| %>
+       <div class="page" id ="test<%= n + 2 %>">
+          <%= render 'products/index_to_product' , products: a_tag %>
+         <% n += 1 %>
 
-    </div>
+       </div>
+      <% end %>
+
     <!--<div class="col s12 m12 grey darken-3">-->
       <!--<ul class="pagination">-->
         <!--<li class="waves-effect waves-light btn col s12">-->
@@ -41,10 +45,9 @@
     </div>
 
   </div>
-</div>
-<div id = "test1">
   <%= link_to_next_page @products , 'Next Page' , class: 'btn btn-lg btn-block btn-primary'%>
 </div>
+
 
 
 

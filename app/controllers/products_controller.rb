@@ -16,11 +16,9 @@ class ProductsController < ApplicationController
     @like = Like.find_by(user_id: current_user.id)
 
     @tag =  User.find(current_user.id).tag_list
-
+    @tag_products = []
       @tag.each do |a_tag|
-        @test_page_number = 2
-        @tag_products = Product.search(a_tag)
-        @test_page_number += 1
+        @tag_products << Product.tagged_with(a_tag)
       end
     end
   end
