@@ -19,13 +19,13 @@
     <div class="row" id="product_cards">
 
       <div class="page" id="test1">
-       <%= render 'products/index_to_product' , products: @products %>
+      <%= render 'products/index_to_product' , products: @products %>
 
-      </div>
+    </div>
 
-      <% n = 0 %>
+      <% n = 2 %>
       <% @tag_products.each do |a_tag| %>
-       <div class="page" id ="test<%= n + 2 %>">
+       <div class="page" id ="test<%= n  %>">
           <%= render 'products/index_to_product' , products: a_tag %>
          <% n += 1 %>
 
@@ -45,9 +45,5 @@
     </div>
 
   </div>
-  <%= link_to_next_page @products , 'Next Page' , class: 'btn btn-lg btn-block btn-primary'%>
 </div>
-
-
-
 

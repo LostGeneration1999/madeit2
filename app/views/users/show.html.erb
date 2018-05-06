@@ -3,8 +3,8 @@
 <div class="container">
   <div class="row">
     <ul class="tabs">
-    <li class="tab col s6"><%= @user.nickname %>さんのマイページ</a></li>
-    <li class="tab col s3"><a href="#test1"><%= @user.nickname %>さんの投稿</a></li>
+    <li class="tab col s6"><a><%= @user.nickname %>さんのマイページ</a></li>
+    <li class="tab col s3"><a href="#test1" class="active"><%= @user.nickname %>さんの投稿</a></li>
     <li class="tab col s3"><a href="#test2"><%= @user.nickname %>さんのいいね！</a></li>
     </ul>
 
@@ -19,7 +19,7 @@
                 <img src="<%= @user.avatar %>">
               </li>
               <li class="collection-item">
-                  <a>nick name :    <%= @user.nickname %><br></a>
+                  <a>nick name :  <%= @user.nickname %><br></a>
               </li>
               <li class="collection-item">
                   <a>email :   <%= @user.email %></a>
@@ -29,9 +29,7 @@
               </li>
               <li class="collection-item">
                   <a>interest :
-                    <% @user.tag_list.each do |tag| %>
-                      <div class="chip"><%= tag %></div>
-                    <% end %>
+                    <%= render 'products/tag_list', tag_list: @user.tag_list %>
               </li>
             </ul>
           </div>
@@ -61,8 +59,8 @@
       </div>
     </div>
 
-</div>
-</div>
-</div>
+    </div>
+  </div>
+ </div>
 </div>
 

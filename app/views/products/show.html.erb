@@ -5,7 +5,6 @@
         <div class="col s8">
           <ul class="card">
               <%= render 'products/product' , a_product: @product %>
-
           <li class="collection-item">
               <%= form_for [@product, @comments] do |f| %>
                 <div class="row">
@@ -24,6 +23,7 @@
             </div>
             </div>
             </div>
+          </li>
           <li class="collection-item grey darken-3">
             <div class="comments">
               <div class="center">
@@ -31,10 +31,27 @@
               </div>
               <ul class="collection with-header">
               <% @product.comments.each do |comment| %>
-              <li class="collection-item"><div>
+              <li class="collection-item">
+                <div>
                   <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
                   <%= comment.content %>
-                <a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div>
+
+                  <%= form_for [@product, @comments] do |f| %>
+                  <ul class="collapsible">
+                    <li>
+                      <div class="collapsible-header"><i class="material-icons">message</i>コメントに返信をする</div>
+                      <div class="collapsible-body">
+                            <%= f.text_field :content %>
+                            <%= f.
+                            <%= button_tag type:"submit", class: "waves-effect waves-light btn" do %>
+                            <%= f.submit "投稿する" %>
+                            <% end %>
+                          </div>
+                    </li>
+                  </ul>
+                  <% end %>
+
+              　</div>
                   <% if comment.user_id == current_user.id %>
                     <%= link_to product_comment_path(@product,comment), method: :delete , class: "waves-effect waves-light btn" do %>
                       <i class="fa fa-arrow-left"></i>
@@ -45,7 +62,8 @@
               <% end %>
               </ul>
             </div>
-        </li>
+          </li>
+        </ul>
       <div class="center">
         <%= link_to products_path , class: "waves-effect waves-light btn" do %>
              <i class="fa fa-arrow-right"></i>

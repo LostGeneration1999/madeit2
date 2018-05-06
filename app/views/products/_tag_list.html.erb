@@ -1,5 +1,5 @@
 <% tag_list.each do |tag| %>
   <div class="chip">
-  <span class="label label-primary"><%= tag %></span>
+  <span class="label label-primary"><%= link_to "#{tag}" , search_products_path %></span>
   </div>
 <% end %>

@@ -1,9 +1,11 @@
 
         <div class="card-image cover">
+          <%= link_to product_path(a_product.id) do %>
           <img src="<%= a_product.image %>">
           <span class="card-title">
             <%= a_product.name %>
           </span>
+            <% end %>
         </div>
 
         <ul class="collection">

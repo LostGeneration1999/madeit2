@@ -12,11 +12,13 @@ class Product < ActiveRecord::Base
     # いいねしたユーザーのなかにuserがいるかどうか
   end
 
-  def self.search(keyword)
-    if keyword
-      Product.where([' name LIKE? ', "%#{keyword}%"])
-    else
-      Product.all
-    end
-  end
+  # def self.search(keyword)
+  #   if keyword
+  #     Product.where([' name LIKE? ', "%#{keyword}%"])
+  #   else
+  #     Product.all
+  #   end
+  # end
+
+
 end

@@ -1,14 +1,13 @@
 class CommentsController < ApplicationController
   def destroy
-    Comment.find(params[:id]).destroy
-    redirect_to "/products"
+    @comment = Comment.find(params[:id]).destroy
+    redirect_to "/products/#{@comment.product.id}"
   end
 
   def create
-   Comment.create(comment_params)
-   @product = Product.find_by(params[:id])
+   @comment = Comment.create(comment_params)
    #find_byのせいで変なページにいく
-    redirect_to "/products"
+    redirect_to "/products/#{@comment.product.id}"
   end
 
   private

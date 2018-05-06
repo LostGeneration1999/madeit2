@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :top]
 
   def top
+    @trend = ActsAsTaggableOn::Tag.most_used(3)
   end
 
   def index
@@ -47,7 +48,12 @@ class ProductsController < ApplicationController
   end
 
   def search
-   @search = Product.search(params[:keyword]).order("created_at DESC").page(params[:page]).per(3)
+    @like = Like.find_by(user_id: current_user.id)
+    @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
+    @search = Product.ransack(params[:q])
+    @results = @search.result.order("created_at DESC").page(params[:page]).per(10)
+
+    @tag_search = Product.tagged_with(params[:search])
   end
 
   def destroy
@@ -65,4 +71,6 @@ class ProductsController < ApplicationController
   def move_to_index
     redirect_to action: :index unless user_signed_in?
   end
+
+
 end

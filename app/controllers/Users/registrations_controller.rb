@@ -30,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def edit
+
   end
 
 
