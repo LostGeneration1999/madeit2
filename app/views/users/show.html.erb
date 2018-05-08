@@ -24,12 +24,20 @@
               <li class="collection-item">
                   <a>email :   <%= @user.email %></a>
               </li>
+              <% unless @user.birth.nil? %>
               <li class="collection-item">
                   <a>birth :   <%= @user.birth %></a>
               </li>
+              <% end %>
+              <% unless @user.tag_list.nil? %>
               <li class="collection-item">
                   <a>interest :
                     <%= render 'products/tag_list', tag_list: @user.tag_list %>
+                  </a>
+              </li>
+              <% end %>
+              </li id="user-<%= @user.id %>-<% current_user.id %>" class="collection-item">
+                <%= render 'users/follow', user: @user %>
               </li>
             </ul>
           </div>
@@ -42,21 +50,25 @@
     </div>
       <div class="col s6">
         <div class="card" id = "test1">
+          <% unless @products.nil? %>
           <div class="blue-grey darken-1">
           <div class="card">
-          <% @products.each do |a_product| %>
-            <%= render 'products/product' , a_product: a_product %>
-          <% end %>
+              <% @products.each do |a_product| %>
+                <%= render 'products/product' , a_product: a_product %>
+              <% end %>
           </div>
           </div>
           <%= link_to_next_page @products , 'more read ....' , class: 'btn btn-lg btn-block btn-primary'%>
+            <% end %>
           </div>
         <div id="test2">
+          <% unless @like_products.nil? %>
           <div class="blue-grey darken-1">
           <div class="card">
               <%= render 'products/product' , a_product: @like_products %>
         </div>
       </div>
+        <% end %>
     </div>
 
     </div>

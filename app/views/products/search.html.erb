@@ -5,8 +5,11 @@
         <li class="tab col s6"><a href="#test1">キーワード検索</a></li>
         <li class="tab col s6"><a href="#test2">タグ検索</a></li>
       </ul>
+
+      <!--キーワード-->
       <div id ="test1" >
         <%= search_form_for @search,url: search_products_path do |f| %>
+
           <div class="form-group">
             <i class="material-icons prefix">search</i>
             <%= f.search_field :name_cont, class: 'form-control', placeholder: 'キーワードで検索' %>
@@ -28,12 +31,13 @@
             </div>
           </div>
         </div>
-
       </div>
+
+    <!--タグ-->
       <div id ="test2">
         <div class="form-group">
         <i class="material-icons prefix">search</i>
-        <%= form_tag({action: 'search', method: "get", id: "test2"}) do %>
+        <%= form_tag({action: 'search', method: "get"}) do %>
           <%= text_field_tag :search %>
           <%= submit_tag 'Search', :class =>  "btn waves-effect waves-light" %>
         <% end %>

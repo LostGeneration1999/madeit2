@@ -28,24 +28,16 @@
           </li>
 
             <li id="product-<%= a_product.id %>" class="collection-item" >
-              <span class="timestamp">
-              </span>
               <div class="like-button-<%= a_product.id %>">
               <%= render 'products/likes' , a_product: a_product %>
               </div>
             </li>
 
-          <li class="collection-item">
-            <%= link_to a_product, class: "waves-effect waves-light btn" do %>
-              <i class="fa fa-arrow-left"></i>
-              <span>SHOW</span>
-              <!--このボタンがツイート画像とかだったら使いやすそう-->
-            <% end %>
-
           <% if user_signed_in? && current_user. id == a_product.user_id %>
+            <li class="collection-item">
             <%= link_to a_product, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn" do %>
               <i class="fa fa-arrow-left"></i>
               <span>削除</span>
             <% end %>
+            </li>
           <% end %>
-        </li>

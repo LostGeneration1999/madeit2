@@ -56,4 +56,5 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'ransack'
+gem 'acts_as_follower'
 

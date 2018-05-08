@@ -81,12 +81,16 @@ m
         </i>
       </li>
 
-     <li class="input_button" style="float: right">
      <li  class="input_button" style="float: right">
        <i class="material-icons">
          <%= link_to 'search', "/products/search" %>
        </i>
      </li>
+
+     <li class="input_button" style="float: right">
+       <i class="material-icons">
+         <%= link_to 'format_list_numbered', "/products/ranking" %>
+       </i>
        <script>
            M.AutoInit();
            document.addEventListener('DOMContentLoaded', function() {
@@ -113,7 +117,14 @@ m
          <!--</div>-->
        <!--</div>-->
      </li>
-    <% if user_signed_in? %>
+   </ul>
+     <!-- Dropdown Trigger -->
+     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i class="material-icons">people
+     </i></a>
+
+     <!-- Dropdown Structure -->
+     <ul id='dropdown1' class='dropdown-content'>
+       <% if user_signed_in? %>
       <li class="input_button" style="float: right">
       <%= link_to 'サインアウト', destroy_user_session_path, method: :delete %>
       </li>

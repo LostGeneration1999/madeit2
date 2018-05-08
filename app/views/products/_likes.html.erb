@@ -1,8 +1,9 @@
-<span class="like">
+
   <% if current_user %>
     <% if a_product.user_exist?(current_user) %>
         <div class = "action">
       <!--すでにいいね！を押してるかどうかの判定　それに応じて画像を変更している-->
+
            <%= form_for [a_product,@like],url: product_like_path(a_product.id,@like.id),method: :delete, remote: true do |f| %>
             <%= image_submit_tag("like.png",class: "main_img" )%>
            <% end %>
@@ -17,4 +18,3 @@
       </div>
     <% end %>
   <% end %>
-</span>

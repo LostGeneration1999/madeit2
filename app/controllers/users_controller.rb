@@ -14,9 +14,21 @@ class UsersController < ApplicationController
     #対象ユーザー様がlikesを表示する時に必要なインスタンス
     @like_user = Like.where(user_id: @user.id).product
 
-    @like_products = @like.product
+    unless @like.nil?
+      @like_products = @like.product
+    end
 
     #対象ユーザー様が投稿したツイートを表示
     @products = Product.where(user_id: @user.id).page(params[:page]).per(3).order("created_at DESC")
+  end
+
+  def follow
+    @user = User.find(params[:id])
+    current_user.follow(@user)
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    current_user.stop_following(@user)
   end
 end
