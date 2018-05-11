@@ -14,9 +14,9 @@
                         <i class="material-icons prefix">textsms</i>
                         <%= f.text_field :content %>
                         <!--<label for="autocomplete-input">Autocomplete</label>-->
-                  <%= button_tag type: "submit", class: "waves-effect waves-light btn" do %>
-                  <i class="fa fa-arrow-left"></i>
-                          <%= f.submit "投稿する" %>
+                       <%= button_tag type: "submit", class: "waves-effect waves-light btn" do %>
+                       <i class="fa fa-arrow-left"></i>
+                      <%= f.submit "投稿する" %>
               <% end %>
               <% end %>
             </div>
@@ -31,33 +31,31 @@
               </div>
               <ul class="collection with-header">
               <% @product.comments.each do |comment| %>
-              <li class="collection-item">
-                <div>
-                  <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
-                  <%= comment.content %>
-
-                  <%= form_for [@product, @comments] do |f| %>
-                  <ul class="collapsible">
-                    <li>
-                      <div class="collapsible-header"><i class="material-icons">message</i>コメントに返信をする</div>
-                      <div class="collapsible-body">
-                            <%= f.text_field :content %>
-
-                            <%= button_tag type:"submit", class: "waves-effect waves-light btn" do %>
-                            <%= f.submit "投稿する" %>
-                            <% end %>
-                          </div>
-                    </li>
-                  </ul>
-                  <% end %>
-
-              　</div>
-                  <% if comment.user_id == current_user.id %>
-                    <%= link_to product_comment_path(@product,comment), method: :delete , class: "waves-effect waves-light btn" do %>
-                      <i class="fa fa-arrow-left"></i>
-                      <span>コメント削除</span>
+                  <li class="collection-item">
+                    <div>
+                      <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %></strong>
+                      <%= comment.content %>
+                      <%= form_for [@product, @comments] do |f| %>
+                        <ul class="collapsible">
+                          <li>
+                            <div class="collapsible-header"><i class="material-icons">message</i>コメントに返信をする</div>
+                            <div class="collapsible-body">
+                              <%= f.text_field :content %>
+                              <%= f.hidden_field :reply_comment, :value => comment.id  %>
+                              <%= button_tag type:"submit", class: "waves-effect waves-light btn" do %>
+                                <%= f.submit "投稿する" %>
+                              <% end %>
+                            </div>
+                          </li>
+                        </ul>
+                      <% end %>
+                      　</div>
+                    <% if comment.user_id == current_user.id %>
+                      <%= link_to product_comment_path(@product,comment), method: :delete , class: "waves-effect waves-light btn" do %>
+                        <i class="fa fa-arrow-left"></i>
+                        <span>コメント削除</span>
+                      <% end %>
                     <% end %>
-                  <% end %>
               </li>
               <% end %>
               </ul>
@@ -71,10 +69,6 @@
         <% end %>
       </div>
     </div>
-  </div>
-
-  <div class="container">
-
   </div>
 </div>
 

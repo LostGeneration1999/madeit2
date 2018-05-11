@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index, :top]
+  before_action :authenticate_user!, except: [:top]
 
 #likeインスタンスとかもうクラスインスタンスに格上げしていいかも
 
@@ -9,9 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.order("created_at DESC").page(params[:page]).per(10)
-    if user_signed_in?
-
+    @products = Product.all.includes(:user,:likes,:taggings,:like_users).order("created_at DESC").page(params[:page]).per(10)
     #create時に生成するインスタンス
     @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
     #destroy時にテーブルから探し出す
@@ -22,7 +20,6 @@ class ProductsController < ApplicationController
       @tag.each do |a_tag|
         @tag_products << Product.tagged_with(a_tag)
       end
-    end
   end
 
   def new
@@ -39,13 +36,11 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
-    if user_signed_in?
+    @product = Product.includes(:comments,:user).find(params[:id])
     @like = Like.find_by(user_id: current_user.id)
     @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
     @like_list = Like.find_by(product_id: params[:product_id])
     @comments = Comment.new
-    end
   end
 
   def search
@@ -58,17 +53,29 @@ class ProductsController < ApplicationController
     @tag_search = Product.tagged_with(params[:search])
   end
 
+  def search_tag
+    @like = Like.find_by(user_id: current_user.id)
+    @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
+  end
+
   def ranking
     @like = Like.find_by(user_id: current_user.id)
     @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
 
     #ランキング機能
+    # includeメソッドを用いる？
     # group(レコード配列)->order(レコード配列)->limit(レコード配列)->count(ハッシュ)
     @like_count_id = Like.group(:product_id).order('count_product_id DESC').limit(10).count(:product_id).keys
 
-    #whereメソッドはidを整列させる作用があり、せっかく順番にしたのに意味がない
-    @like_count_product = @like_count_id.map{|id| Product.find(id)}
+
+    # #whereメソッドはidを整列させる作用があり、せっかく順番にしたのに意味がない
+    # @like_count_product = @like_count_id.map{|id| Product.find(id)}
+    # N+1問題が発生する
+    @like_count_product = Product.where(id: @like_count_id).index_by(&:id)
+    @sorted_product = @like_count_id.map{|id| @like_count_product[id] }
+
     @like_count = @like_count_id.map{|id| Like.where(product_id: id).count}
+    # @like_count_column = Like.where(product_id: @like_count_id).group(@like_count_id).map{|id| count(id).values}
 
     @user_count_id = Product.group(:user_id).order('count_user_id DESC').limit(5).count(:user_id).keys
     @user_count = @user_count_id.map{|id| Product.where(user_id: id).count}

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       get :ranking
+      get 'search/:tags' => 'products#search_tag' , as: 'search_ids'
+      post 'search/:tags' => 'products#search_tag' , as: 'search_id'
       get :search
       post :search
       get :top

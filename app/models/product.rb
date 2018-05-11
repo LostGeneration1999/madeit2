@@ -4,6 +4,9 @@ class Product < ActiveRecord::Base
   has_many :comments
   has_many :likes , dependent: :destroy #削除されると自動的にいいねは消える
   has_many :like_users, through: :likes, source: :user #他ー他関係であるので区別化してる？
+  has_many :replies, class_name: Comment, foreign_key: :reply_comment, dependent: :destroy
+
+
   # acts_as_ordered_taggable_on :fields  # field.tags_list が追加される
   acts_as_taggable  # acts_as_taggable_on :tags のエイリアス
 

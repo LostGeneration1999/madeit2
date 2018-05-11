@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :products
   has_many :comments
   has_many :likes
-  has_many :recieved_comments, class_name: Comment, foreign_key: :reply_user_id
+  has_many :replies_user, class_name: Comment, foreign_key: :reply_comment, dependent: :destroy
 
   acts_as_taggable #タグ
   acts_as_followable #フォロワー
@@ -19,6 +19,4 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar,
                                       content_type: ["image/jpg","image/jpeg","image/png"]
   acts_as_ordered_taggable_on :skills
-
-
 end

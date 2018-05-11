@@ -8,9 +8,10 @@
       </ul>
       <div id="test1">
         <div class="col s6">
-          <% @like_count_product.each do |a_product| %>
-            <h4><%= @like_count_product.index(a_product)+1 %>位<br></h4>
-            <h5><%= @like_count[@like_count_product.index(a_product)] %>いいね！</h5>
+          <% @sorted_product.each do |a_product| %>
+
+            <h4><%= @sorted_product.index(a_product)+1 %>位<br></h4>
+            <h5><%= @like_count[@sorted_product.index(a_product)] %>いいね！</h5>
           <ul class="card">
             <%= render 'products/product' , a_product: a_product %>
           </ul>

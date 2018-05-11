@@ -57,4 +57,4 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'ransack'
 gem 'acts_as_follower'
-
+gem 'bullet'
