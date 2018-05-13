@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
 
     #対象ユーザー様が投稿したツイートを表示
-    @products = Product.where(user_id: @user.id).page(params[:page]).per(3).order("created_at DESC")
+    @products = Product.includes(:user,:like_users,:taggings).where(user_id: @user.id).page(params[:page]).per(3).order("created_at DESC")
   end
 
   def follow

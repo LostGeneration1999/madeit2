@@ -11,13 +11,7 @@
 <ul class="collection">
   <li class="collection-item">
       <span class="black-text">
-          <div class="chip">
-            <% unless a_product.user.avatar == nil %>
-                 <img src="<%= a_product.user.avatar %>">
-              <% else %>
-                 <img src="assets/l"
-            <%= link_to "#{a_product.user.nickname}",  user_path(a_product.user.id) %>
-           </div>
+        <%= render 'products/user', user: a_product.user %>
       </span>
 <!--削除したアカウントがあるとuser.idがないとエラーを吐く-->
   </li>

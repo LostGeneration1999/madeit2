@@ -22,6 +22,5 @@ class Product < ActiveRecord::Base
   #     Product.all
   #   end
   # end
-
-
+  #
 end

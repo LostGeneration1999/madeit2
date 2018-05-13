@@ -8,21 +8,34 @@
       </ul>
       <div id="test1">
         <div class="col s6">
-          <% @sorted_product.each do |a_product| %>
-
-            <h4><%= @sorted_product.index(a_product)+1 %>位<br></h4>
-            <h5><%= @like_count[@sorted_product.index(a_product)] %>いいね！</h5>
+          <% @like_count_id.each do |a_product| %>
+            <h4><%= @like_count_id.index(a_product)+1 %>位<br></h4>
+            <h5><%= @like_count_id_hash[a_product] %>いいね！</h5>
           <ul class="card">
-            <%= render 'products/product' , a_product: a_product %>
+            <%= render 'products/product' , a_product:  @like_count_product[a_product] %>
           </ul>
             <% end %>
         </div>
       </div>
+
       <div id="test2">
-
+        <% @product_count_id.each do |a_user| %>
+          <h4><%= @product_count_id.index(a_user)+1 %>位</h4>
+          <h5><%= @product_count_id_hash[a_user] %>ツイート</h5>
+          <ul class="user-index">
+            <%= render 'products/user', user: @product_count_user[a_user] %>
+          </ul>
+        <% end %>
       </div>
-      <div class="test3">
 
+      <div id="test3">
+        <% @follow_count_id.each do |a_user| %>
+          <h4><%= @follow_count_id.index(a_user)+1 %>位</h4>
+          <h5><%= @follow_count_user[a_user].followers_count %>人</h5>
+          <ul class="user-index">
+            <%= render 'products/user', user: @follow_count_user[a_user] %>
+          </ul>
+        <% end %>
       </div>
     </div>
   </div>

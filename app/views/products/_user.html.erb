@@ -1,0 +1,8 @@
+<div class="chip">
+  <% unless user.avatar == nil %>
+       <img src="<%= user.avatar %>">
+  <% else %>
+       <img src="/default.png">
+  <% end %>
+  <%= link_to "#{user.nickname}",  user_path(user.id) %>
+</div>
