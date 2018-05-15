@@ -15,13 +15,15 @@
           <div class="card-content white-text">
             <ul class="collection">
 
-              <li class="collection-item">
-                <img src="<%= @user.avatar %>">
+              <li class="collection-item field">
+                <%= image_tag  @user.avatar.url %>
               </li>
               <li class="collection-item">
-                  <a>nick name :  <%= @user.nickname %><br></a>
+                  <a>Nickname :  <%= @user.nickname %><br></a>
               </li>
-
+              <li class="collection-item">
+                <a>Introduction:  <%= @user.field %><br></a>
+              </li>
               <% unless @user.tag_list.nil? %>
               <li class="collection-item">
                   <a>interest :

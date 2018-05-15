@@ -141,7 +141,7 @@ class ProductsController < ApplicationController
  private
    # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:name,:content, :url1, :url2,:description, :image, :tag_list)
+    params.require(:product).permit(:name,:content, :url2,:description, :image, :tag_list)
   end
 
   def move_to_index

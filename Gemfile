@@ -51,7 +51,7 @@ gem 'devise'
 gem 'materialize-sass'
 gem 'kaminari'
 gem 'carrierwave'
-gem 'paperclip'
+gem 'paperclip', "~> 4.3.0"
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
