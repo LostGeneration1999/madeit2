@@ -8,11 +8,14 @@ class ProductsController < ApplicationController
     @trend = ActsAsTaggableOn::Tag.most_used(3)
   end
 
-
-
   def index
+    #フォローしているユーザーのみタイムラインに表示
     @products_all = Product.includes(:user,:taggings,:like_users,:likes)
-    @products = @products_all.order("created_at DESC").page(params[:page]).per(10)
+
+    @user = User.find(current_user.id)
+    @my_products = @user.products
+    @follow_users = @user.all_following
+    @products = @products_all.where(user_id: @follow_users).order("created_at DESC").page(params[:page]).per(10)
 
     #create時に生成するインスタンス
     @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
@@ -21,10 +24,10 @@ class ProductsController < ApplicationController
     @like = Like.find_by(user_id: current_user.id)
 
     #自分の登録タグを取得 and タグにまつわるツイートを検索
-    @tag =  User.find(current_user.id).tag_list
+    @tag =  @user.tag_list
     @tag_products = []
       @tag.each do |a_tag|
-        @tag_products << @products_all.tagged_with(a_tag)
+        @tag_products << @products_all.tagged_with(a_tag).take(20)
       end
   end
 
@@ -56,7 +59,6 @@ class ProductsController < ApplicationController
     @like = Like.find_by(user_id: current_user.id)
     @likes = Like.new(user_id: current_user.id, product_id: params[:product_id])
 
-    # @like_list = Like.find_by(product_id: params[:product_id])
 
     #コメント追加
     @new_comments = Comment.new
@@ -73,7 +75,7 @@ class ProductsController < ApplicationController
     @results = @search.result.includes(:user,:likes,:taggings,:like_users).order("created_at DESC").page(params[:page]).per(10)
 
     # タグ検索
-    @tag_search = Product.tagged_with(params[:search])
+    @tag_search = Product.includes(:user,:taggings,:like_users).tagged_with(params[:search])
   end
 
 
@@ -119,7 +121,6 @@ class ProductsController < ApplicationController
     #フォロワーランキング
     @follow_count_id_hash = Follow.group(:followable_id).order('count_followable_id DESC').limit(5).count(:followable_id)
     @follow_count_id = @follow_count_id_hash.keys
-
 
 
     #フォロワー順にユーザーを取得する

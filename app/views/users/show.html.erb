@@ -21,14 +21,7 @@
               <li class="collection-item">
                   <a>nick name :  <%= @user.nickname %><br></a>
               </li>
-              <li class="collection-item">
-                  <a>email :   <%= @user.email %></a>
-              </li>
-              <% unless @user.birth.nil? %>
-              <li class="collection-item">
-                  <a>birth :   <%= @user.birth %></a>
-              </li>
-              <% end %>
+
               <% unless @user.tag_list.nil? %>
               <li class="collection-item">
                   <a>interest :

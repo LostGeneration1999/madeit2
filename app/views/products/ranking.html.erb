@@ -6,11 +6,20 @@
         <li class="tab col s4"><a href="#test2">投稿ユーザー</a></li>
         <li class="tab col s4"><a href="#test3">フォロワーユーザー</a></li>
       </ul>
+      <div class="col s3">
+      </div>
+      </di>
       <div id="test1">
         <div class="col s6">
           <% @like_count_id.each do |a_product| %>
+            <% if @like_count_id.index(a_product)<3 %>
+              <div class="color-<%= @like_count_id.index(a_product)+1 %>">
             <h4><%= @like_count_id.index(a_product)+1 %>位<br></h4>
-            <h5><%= @like_count_id_hash[a_product] %>いいね！</h5>
+              </div>
+            <% else %>
+            <h5><%= @like_count_id.index(a_product)+1 %>位<br></h5>
+            <% end %>
+            <div><%= @like_count_id_hash[a_product] %>いいね！</div>
           <ul class="card">
             <%= render 'products/product' , a_product:  @like_count_product[a_product] %>
           </ul>
@@ -19,23 +28,39 @@
       </div>
 
       <div id="test2">
+        <div class="col s6">
         <% @product_count_id.each do |a_user| %>
-          <h4><%= @product_count_id.index(a_user)+1 %>位</h4>
-          <h5><%= @product_count_id_hash[a_user] %>ツイート</h5>
+          <% if @product_count_id.index(a_user)+1 <4 %>
+            <div class="color-<%= @product_count_id.index(a_user)+1 %>">
+            <h4><%= @product_count_id.index(a_user)+1 %>位<br></h4>
+            </div>
+          <% else %>
+            <h5><%= @product_count_id.index(a_user)+1 %>位<br></h5>
+          <% end %>
+          <%= @product_count_id_hash[a_user] %>ツイート
           <ul class="user-index">
             <%= render 'products/user', user: @product_count_user[a_user] %>
           </ul>
         <% end %>
+        </div>
       </div>
 
       <div id="test3">
+        <div class="col s6">
         <% @follow_count_id.each do |a_user| %>
-          <h4><%= @follow_count_id.index(a_user)+1 %>位</h4>
-          <h5><%= @follow_count_user[a_user].followers_count %>人</h5>
+            <% if @follow_count_id.index(a_user)+1<4 %>
+              <div class="color-<%= @follow_count_id.index(a_user)+1 %>">
+              <h4><%= @follow_count_id.index(a_user)+1 %>位<br></h4>
+              </div>
+            <% else %>
+              <h5><%= @follow_count_id.index(a_user)+1 %>位<br></h5>
+            <% end %>
+          <%= @follow_count_user[a_user].followers_count %>人
           <ul class="user-index">
             <%= render 'products/user', user: @follow_count_user[a_user] %>
           </ul>
         <% end %>
+        </div>
       </div>
     </div>
   </div>

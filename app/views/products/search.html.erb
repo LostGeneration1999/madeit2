@@ -14,9 +14,12 @@
             <i class="material-icons prefix">search</i>
             <%= f.search_field :name_cont, class: 'form-control', placeholder: 'キーワードで検索' %>
 
-            <%= f.submit 'Search',:class=> "btn waves-effect waves-light" %>
+            <%= f.submit '検索',:class=> "btn waves-effect waves-light" %>
           </div>
         <% end %>
+
+        <div class="col s3">
+        </div>
 
         <div class="col s6">
           <div class="card" id = "test1">
@@ -26,7 +29,7 @@
                   <%= render 'products/product' , a_product: result %>
                   </ul>
                   <% end %>
-                <%= link_to_next_page @results , 'Next Page' , class: 'btn btn-lg btn-block btn-primary'%>
+                <%= link_to_next_page @results , 'もっと見る' , class: 'btn btn-lg btn-block btn-primary'%>
               </div>
             </div>
           </div>
@@ -38,9 +41,11 @@
         <div class="form-group">
         <i class="material-icons prefix">search</i>
         <%= form_tag({action: 'search', method: "get"}) do %>
-          <%= text_field_tag :search %>
-          <%= submit_tag 'Search', :class =>  "btn waves-effect waves-light" %>
+          <%= text_field_tag :search , nil,placeholder: 'タグで検索'%>
+          <%= submit_tag '検索', :class =>  "btn waves-effect waves-light" %>
         <% end %>
+        </div>
+        <div class="col s3">
         </div>
 
         <div class="col s6">

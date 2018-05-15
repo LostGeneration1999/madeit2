@@ -1,6 +1,8 @@
-<div class = "product">
+<div class="col s3">
+</div>
+<div class = "col s6  product">
   <% products.each do |a_product| %>
-    <div class="card col s6 blue-grey darken-1">
+    <div class="card col s12 blue-grey darken-1">
       <%= render 'products/product' , a_product: a_product %>
       </ul>
     </div>

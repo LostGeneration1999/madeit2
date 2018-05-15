@@ -117,30 +117,25 @@ m
          <!--</div>-->
        <!--</div>-->
      </li>
-   </ul>
      <!-- Dropdown Trigger -->
-     <a class='dropdown-trigger btn' href='#' data-target='dropdown1'><i class="material-icons">people
-     </i></a>
 
      <!-- Dropdown Structure -->
-     <ul id='dropdown1' class='dropdown-content'>
        <% if user_signed_in? %>
-      <li class="input_button" style="float: right">
+      <li>
       <%= link_to 'サインアウト', destroy_user_session_path, method: :delete %>
       </li>
-       <li class="input_button" style="float: right">
+       <li>
          <%= link_to 'マイページ', "/users/#{current_user.id}" %>
        </li>
-
     <% else %>
-      <li class="input_button" style="float: right">
+      <li>
       <%= link_to 'ログイン', new_user_session_path , class: 'post' %>
       </li>
-      <li class="input_button" style="float: right">
+      <li>
       <%= link_to '新規登録', new_user_registration_path , class: 'post' %>
       </li>
     <% end %>
-    </ul>
+   </ul>
     <!--<a class="btn-floating pulse"><i class="material-icons">menu</i></a>-->
   </div>
 </nav>

@@ -11,7 +11,7 @@
            <% @tag_number = @tag.index("#{tag}").to_i %>
            <li class="tab col s<%= split_number %>"><a href="#test<%= @tag_number + 2 %>"><%= tag %></a></li>
            <% end %>
-         <li class="tab col s<%= split_number %>"><a class="active"  href="#test1">標準</a></li>
+         <li class="tab col s<%= split_number %>"><a class="active"  href="#test1">Timelines</a></li>
        <% end %>
      </ul>
    </div>
@@ -19,16 +19,19 @@
     <div class="row" id="product_cards">
 
       <div class="page" id="test1">
-      <%= render 'products/index_to_product' , products: @products %>
-
+        <div class="card">
+          <%= render 'products/index_to_product' , products: @products %>
+        </div>
     </div>
 
       <% n = 2 %>
       <% @tag_products.each do |a_tag| %>
-       <div class="page" id ="test<%= n  %>">
-          <%= render 'products/index_to_product' , products: a_tag %>
+       <div class="page" id ="test<%= n %>">
+       <div class="center-align color: light-green accent-<%= n-1 %>">
+        <h5>"<%= @tag[n-2] %>"</h5>タグは最大20個まで取得します
+       </div>
+         <%= render 'products/index_to_product' , products: a_tag %>
          <% n += 1 %>
-
        </div>
       <% end %>
 
@@ -43,7 +46,7 @@
 
    <!--</div>-->
     </div>
-
   </div>
 </div>
-
+<%= link_to_next_page(@products, '次のタイムラインへ',class: "btn btn-lg btn-block btn-primary" ) %>
+<%= link_to_prev_page(@products, '前のタイムラインへ',class: "btn btn-lg btn-block btn-primary") %>
