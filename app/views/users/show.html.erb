@@ -31,14 +31,18 @@
                   </a>
               </li>
               <% end %>
-              <li id="user-<%= @user.id %>">
+
+              <li class="collection-item">
+              <div id="user-<%= @user.id %>">
                 <%= render 'users/follow', user: @user %>
+              </div>
               </li>
+
             </ul>
+            <div class="center">
+              <%= link_to '編集する' ,edit_user_path, class: "btn waves-effect　actions btn-large" %>
+            </div>
           </div>
-           <div class="center">
-             <%= link_to '編集する' ,edit_user_path, class: "btn waves-effect waves-light" %>
-           </div>
         </div>
 
     </div>

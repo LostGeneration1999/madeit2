@@ -1,5 +1,4 @@
 <% if user.id != current_user.id %>
-  <li class="collection-item">
     <% unless current_user.following?(user) %>
       <div class="action">
          <%= link_to 'フォローする' ,follow_users_path,method: :post, class: "btn waves-effect waves-light" ,remote: true %>
@@ -9,5 +8,4 @@
          <%= link_to 'フォローを解除する' ,unfollow_users_path, method: :post,class: "btn waves-effect waves-light",remote: true %>
       </div>
     <% end %>
-  </li>
 <% end %>

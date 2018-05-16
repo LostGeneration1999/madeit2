@@ -1,5 +1,4 @@
-
-  <% if current_user %>
+<% if current_user %>
     <% if a_product.user_exist?(current_user) %>
         <div class = "action">
       <!--すでにいいね！を押してるかどうかの判定　それに応じて画像を変更している-->
@@ -17,4 +16,4 @@
           <% end %>
       </div>
     <% end %>
-  <% end %>
+<% end %>
