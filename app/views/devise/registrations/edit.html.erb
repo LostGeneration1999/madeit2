@@ -1,134 +1,127 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 <div class = "row">
   <div class = "container">
-    <div class = "col s2">
-    </div>
+    <div class = "col s12">
+      <div class="col s2"></div>
+      <ul class="tabs">
+        <li class="tab col s12"><a class="active" href="#test1">ユーザー編集</a></li>
+      </ul>
 
-    <div class = "col s8">
-      <h2>Edit <%= resource_name.to_s.humanize %> Page</h2>
-       <br>
-       <h6>このページを編集する際、現在使用しているパスワードが必須となります。</h6>
-       <br>
-       <ul class="collapsible">
-         <li>
-           <div class="collapsible-header"><i class="material-icons">email</i>Email</div>
-            <div class="collapsible-body">
-             <div class="field">
-             <%= f.label :email %><br />
-             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-             </div>
-           </div>
-         </li>
 
-         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-         <% end %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
 
-         <li>
-           <div class="collapsible-header"><i class="material-icons">lock</i>Password</div>
-             <div class="collapsible-body">
-               <div class="field">
-                 <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-                 <%= f.password_field :password, autocomplete: "off" %>
-                 <% if @minimum_password_length %>
-                 <br/>
-                 <em><%= @minimum_password_length %> characters minimum</em>
-                 <% end %>
-               </div>
-            </div>
-         </li>
-         <li>
-           <div class="collapsible-header"><i class="material-icons">people</i>Nickname</div>
-             <div class="collapsible-body">
-               <div class="label"><%= f.label :nickname %><br/>
-                 <%= f.text_field :nickname %>
-               </div>
-             </div>
-         </li>
-         <li>
-            <div class="collapsible-header"><i class="material-icons">attach_file</i>Image</div>
-              <div class="collapsible-body"><span>
+  <div class="col s2"></div>
+  <div class="col s12">
+    <h6>このページを編集する際、現在使用しているパスワードが必須となります。</h6>
+    <br>
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">email</i>Email</div>
+        <div class="collapsible-body">
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        </div>
+      </li>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <li>
+        <div class="collapsible-header"><i class="material-icons">lock</i>Password</div>
+        <div class="collapsible-body">
+          <div class="field">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+            <% if @minimum_password_length %>
+              <br/>
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">people</i>Nickname</div>
+        <div class="collapsible-body">
+          <div class="label"><%= f.label :nickname %><br/>
+            <%= f.text_field :nickname %>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">attach_file</i>Image</div>
+        <div class="collapsible-body"><span>
                 <div class="field">
                    <%= f.file_field :avatar %>
                 </div>
-              </div>
-         </li>
-         <li>
-           <div class="collapsible-header"><i class="material-icons">people</i>Introduction</div>
-           <div class="collapsible-body">
-             <div class="label"><%= f.label :field %><br/>
-               <%= f.text_field :field %>
-             </div>
-           </div>
-         </li>
-         <li>
-           <div class="collapsible-header"><i class="material-icons">event_note</i>Birth</div>
-              <div class="collapsible-body">
-                 <div class="label">
-                   <%= f.label :birth %><br />
-                   <%= f.text_field :birth, class:  'datepicker'  %>
-                   <script>
-                       document.addEventListener('DOMContentLoaded', function() {
-                           var elems = document.querySelectorAll('.datepicker');
-                           var instances = M.Datepicker.init(elems, options);
-                       });
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">people</i>Introduction</div>
+        <div class="collapsible-body">
+          <div class="label"><%= f.label :field %><br/>
+            <%= f.text_field :field %>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">event_note</i>Birth</div>
+        <div class="collapsible-body">
+          <div class="label">
+            <%= f.label :birth %><br />
+            <%= f.text_field :birth, class:  'datepicker'  %>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.datepicker');
+                    var instances = M.Datepicker.init(elems, options);
+                });
 
-                       // Or with jQuery
+                // Or with jQuery
 
-                       $(document).ready(function(){
-                           $('.datepicker').datepicker();
-                       });
-                   </script>
-                 </div>
-             </div>
-        </li>
-        <li>
-          <div class="collapsible-header"><i class="material-icons">beenhere</i>Interest</div>
-            <div class="collapsible-body"><span>
+                $(document).ready(function(){
+                    $('.datepicker').datepicker();
+                });
+            </script>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">beenhere</i>Interest</div>
+        <div class="collapsible-body"><span>
               <div class="chips chips-placeholder">
                     <%= f.label :tag_list, "field" %><br>
-                    <%= f.text_field :tag_list,value: current_user.tag_list.join(',') , class: 'custom-class' %>
-                  <script>
-                      document.addEventListener('DOMContentLoaded', function() {
-                        var elems = document.querySelectorAll('.chips');
-                          var instances = M.Chips.init(elems, options);
-                      });
-
-                      $('.chips').chips();
-                      $('.chips-placeholder').chips({
-                          placeholder: 'Enter a tag',
-                          secondaryPlaceholder: '+Tag',
-                      });
-                  </script>
+                <%= f.text_field :tag_list,value: current_user.tag_list.join(',') , class: 'custom-class' %>
                 </div>
             </span></div>
-        </li>
+      </li>
 
 
       <li class="active">
-         <div class="collapsible-header"><i class="material-icons">lock_open</i>Current Password (変更には現在のパスワードが必須となります。)</div>
-            <div class="collapsible-body"><span>
+        <div class="collapsible-header"><i class="material-icons">lock_open</i>Current Password (変更には現在のパスワードが必須となります。)</div>
+        <div class="collapsible-body"><span>
                <div class="field">
                  <%= f.label :current_password %> <i>(変更には現在のパスワードが必須となります。)</i><br/>
                  <%= f.password_field :current_password, autocomplete: "off" %>
                </div>
             </span>
+        </div>
+    </ul>
+
+
+    <div class="actions row center">
+      <%= f.submit "登録" , class: "btn-large waves-effect waves-light teal lighten-1" %>
+    </div>
+  <% end %>
+
+        <div class="row center">
+          <div  class="col s12">
+            <p>ご不満でしたか？ <%= button_to "ユーザー削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, class:"btn-large waves-effect waves-light teal lighten-1" ,method: :delete %></p>
+           </div>
           </div>
-      </ul>
-
-
-      <div class="actions">
-         <%= f.submit "Update" %>
-     </div>
-<% end %>
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
-</div>
-</div>
+        </div>
+    </div>
+  </div>
 </div>

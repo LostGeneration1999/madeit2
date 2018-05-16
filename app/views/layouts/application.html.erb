@@ -30,23 +30,9 @@ m
 </head>
 <body>
 
-<script>
-    // var elem = document.querySelector('.sidenav');
-    // var instance = M.Sidenav.init(elem, options);
-
-    // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-    // var collapsibleElem = document.querySelector('.collapsible');
-    // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-
-    // Or with jQuery
-
-    $(document).ready(function(){
-        $('.sidenav').sidenav();
-    });
-</script>
 
 <nav>
-  <div class="nav-wrapper grey darken-3">
+  <div class="nav-wrapper black">
 
 <% if user_signed_in? %>
 
@@ -69,8 +55,10 @@ m
 
     <% end %>
 
-    <div href="#" class="brand-logo input_button center">
-    <%= link_to 'Made IT!', "/products" %>
+    <div class="logo brand-logo input_button center">
+    <%= link_to products_path do %>
+      <img src="/logo.png" class="logo">
+    <% end %>
     </div>
 
 <!--     <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
@@ -142,7 +130,7 @@ m
 
 <%= yield %>
 
-  <footer class="page-footer grey darken-3">
+  <footer class="page-footer black">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">

@@ -12,14 +12,15 @@ class UsersController < ApplicationController
     @nickname = @user.nickname
 
     #対象ユーザー様がlikesを表示する時に必要なインスタンス
-    @like_user = Like.where(user_id: @user.id).product
+    @user_like = Like.where(user_id: @user.id).index_by(&:product_id).keys
+    @user_like_products = Product.includes(:user,:like_users,:taggings).where(id: @user_like).take(10)
 
     unless @like.nil?
       @like_products = @like.product
     end
 
     #対象ユーザー様が投稿したツイートを表示
-    @products = Product.includes(:user,:like_users,:taggings).where(user_id: @user.id).page(params[:page]).per(3).order("created_at DESC")
+    @products = Product.includes(:user,:like_users,:taggings).where(user_id: @user.id).page(params[:page]).per(5).order("created_at DESC")
   end
 
   def follow
