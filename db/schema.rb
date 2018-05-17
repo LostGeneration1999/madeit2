@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 20180509062607) do
     t.string   "facebook_id",            limit: 255
     t.string   "github_id",              limit: 255
     t.string   "birth",                  limit: 255
+    t.string   "confirmation_token",     limit: 255
+    t.datetime "confirmed_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
