@@ -1,6 +1,6 @@
-@import "materialize/components/color-variables";
-$primary-color: color("grey", "darken-4") !default;
-$secondary-color: color("teal ", "accent-1") !default;
+//@import "materialize/components/color-variables";
+//$primary-color: color("grey", "darken-4") !default;
+//$secondary-color: color("teal ", "accent-1") !default;
 @import 'materialize';
 
 legend {
@@ -30,11 +30,11 @@ legend {
 }
 .parallax-background-top {
   background-size: 1500px 500px;
-  background-image: url("/hardware.jpg")
+  background-image: url("/hardware.jpg");
 }
 .parallax-background-top2 {
   background-size: 1500px 500px;
-  background-image: url("/top2.jpeg")
+  background-image: url("/top2.jpeg");
 }
 .string-light-color {
   color: #e3f2fd;
@@ -52,7 +52,7 @@ legend {
 }
 .parallax-background-new {
   background-size: 2000px 700px;
-  background-image: url("/new_product.png")
+  background-image: url("/new_product.png");
 }
 .color-1{
   color: #f9a825;

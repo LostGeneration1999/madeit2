@@ -24,6 +24,7 @@ development:
 
 production:
   <<: *default
-  database: madeit_production
-  username: madeit
+  database: madeit2_production
+  username: root
   password: <%= ENV['MADEIT_DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
